@@ -11,14 +11,23 @@ namespace ExtinctionRunner
         [SerializeField] private PlayerView _playerView;
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private float _jumpForce;
+
+        [SerializeField] private CoreView _coreView;
+        [SerializeField] private float _rotationSpeed;
+
         private List<IExecutable> _listOfExecutables = new List<IExecutable>();
 
         private void Start()
         {
-            PlayerController playerController = new PlayerController(_playerView, _jumpForce);
+            InputController inputController = new InputController();
+            _listOfExecutables.Add(inputController);
+            
+            PlayerController playerController = new PlayerController(_playerView, inputController, _jumpForce);
             _listOfExecutables.Add(playerController);
+           
+            CoreController coreController = new CoreController(_coreView, inputController, _rotationSpeed);
             
-            
+
         }
         
         void Update()

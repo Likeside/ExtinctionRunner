@@ -15,7 +15,7 @@ namespace ExtinctionRunner
             var horizontalAxis = Input.GetAxis("Horizontal");
             OnArrowPressed?.Invoke(horizontalAxis);
 
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Fire1"))
             {
                 OnJumpButtonPressed?.Invoke();
             }

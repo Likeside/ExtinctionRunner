@@ -15,6 +15,10 @@ namespace ExtinctionRunner
         [SerializeField] private CoreView _coreView;
         [SerializeField] private float _rotationSpeed;
 
+
+        [SerializeField] private LayerMask _groundCheckLayerMask;
+        [SerializeField] private LayerMask _waterCheckLayerMask;
+
         private List<IExecutable> _listOfExecutables = new List<IExecutable>();
 
         private void Start()
@@ -22,7 +26,7 @@ namespace ExtinctionRunner
             InputController inputController = new InputController();
             _listOfExecutables.Add(inputController);
             
-            PlayerController playerController = new PlayerController(_playerView, inputController, _jumpForce);
+            PlayerController playerController = new PlayerController(_playerView, inputController, _groundCheckLayerMask, _waterCheckLayerMask, _jumpForce);
             _listOfExecutables.Add(playerController);
            
             CoreController coreController = new CoreController(_coreView, inputController, _rotationSpeed);

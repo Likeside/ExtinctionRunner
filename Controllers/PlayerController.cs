@@ -17,6 +17,8 @@ namespace ExtinctionRunner
         private GroundCheckController _playerGroundCheckController;
         private GroundCheckController _playerWaterCheckController;
         private float _jumpForce;
+        private Vector3 _scaleVector1;
+        private Vector3 _scaleVector2;
 
 
         public PlayerController(PlayerView playerView, InputController inputController, LayerMask groundCheckLayerMask, LayerMask waterCheckLayerMask, float jumpForce)
@@ -35,6 +37,9 @@ namespace ExtinctionRunner
             _animationController = new AnimationController(config);
             _inputController.OnArrowPressed += Move;
             _inputController.OnJumpButtonPressed += Jump;
+
+            _scaleVector1 = new Vector3(-1f, 1f, 1f);
+            _scaleVector2 = new Vector3(1f, 1f, 1f);
 
         }
 
@@ -59,12 +64,12 @@ namespace ExtinctionRunner
 
             if (axis > 0)
             {
-                _playerTransform.localScale = new Vector3(-1f, 1f, 1f);
+                _playerTransform.localScale = _scaleVector1;
             }
 
             if (axis < 0)
             {
-                _playerTransform.localScale = new Vector3(1f, 1f, 1f);
+                _playerTransform.localScale = _scaleVector2;
             }
 
             if (_playerWaterCheckController.IsGrounded())

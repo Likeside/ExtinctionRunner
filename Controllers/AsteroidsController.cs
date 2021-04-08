@@ -14,12 +14,12 @@ namespace Controllers
         private Transform[] _spawnersGoTransforms;
         
 
-        public AsteroidsController(int asteroidsMaxAmount, float _asteroidSpawnRate)
+        public AsteroidsController(int asteroidsMaxAmount, float asteroidSpawnRate)
         {
             _asteroidsMaxAmount = asteroidsMaxAmount;
+            _asteroidSpawnRate = asteroidSpawnRate;
             _asteroidsSpawner = new AsteroidsSpawner(_asteroidsMaxAmount);
             SpawnerGO[] tempList = GameObject.FindObjectsOfType<SpawnerGO>();
-            //Debug.Log(tempList.Length);
             _spawnersGoTransforms = new Transform[tempList.Length];
 
             for (int i = 0; i < tempList.Length; i++)
@@ -34,14 +34,14 @@ namespace Controllers
         
         public void Execute()
         {
-            /* _timer -= Time.deltaTime;
-            if (_timer == 0)
+            _timer -= 1*Time.deltaTime;
+            Debug.Log(_timer);
+            if (_timer < 0)
             {
-                Debug.Log("TimerZero");
-                _asteroidsSpawner.SpawnSingleAsteroid(_spawnersGoTransforms[Random.Range(0, _spawnersGoTransforms.Length-1)]);
                 _timer = _asteroidSpawnRate;
+                Debug.Log("TimerZero");
+                _asteroidsSpawner.SpawnSingleAsteroid(_spawnersGoTransforms[Random.Range(0, _spawnersGoTransforms.Length)]);
             }
-            */
         }
 
         public void OnStart()

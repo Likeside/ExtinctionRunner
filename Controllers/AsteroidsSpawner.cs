@@ -16,16 +16,16 @@ namespace Controllers
             _listOfAsteroidTypes = Resources.LoadAll<AsteroidModelSO>("").ToList();
         }
 
-        void SpawnSingleAsteroid()
+       public void SpawnSingleAsteroid(Transform spawnerGO)
         {
-            GameObject.Instantiate(_listOfAsteroidTypes[Random.Range(0, _listOfAsteroidTypes.Count-1)]._asteroid);
+            GameObject.Instantiate(_listOfAsteroidTypes[Random.Range(0, _listOfAsteroidTypes.Count)]._asteroid, spawnerGO);
         }
 
-        void SawnAllAsteroids()
+       public void SpawnAllAsteroids(Transform[] spawnersGo)
         {
-            for (int i = _totalAsteroids; i == 0; i--)
+            for (int i = 0; i < _totalAsteroids; i++)
             {
-                SpawnSingleAsteroid();
+                SpawnSingleAsteroid(spawnersGo[Random.Range(0, spawnersGo.Length)]); //использовать другой рандом
             }
         }
     }

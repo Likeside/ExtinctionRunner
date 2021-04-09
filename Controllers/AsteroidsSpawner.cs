@@ -25,12 +25,16 @@ namespace Controllers
             return tuple;
        }
 
-       public void SpawnAllAsteroids(Transform[] spawnersGo)
-        {
+       public List<(AsteroidModelSO, GameObject)> SpawnAllAsteroids(Transform[] spawnersGo)
+       {
+           List<(AsteroidModelSO, GameObject)> asteroidsList = new List<(AsteroidModelSO, GameObject)>();
             for (int i = 0; i < _totalAsteroids; i++)
             {
-                SpawnSingleAsteroid(spawnersGo[Random.Range(0, spawnersGo.Length)]); //использовать другой рандом
+               var asteroidTuple = SpawnSingleAsteroid(spawnersGo[Random.Range(0, spawnersGo.Length)]); 
+               asteroidsList.Add(asteroidTuple);//использовать другой рандом
             }
-        }
+
+            return asteroidsList;
+       }
     }
 }

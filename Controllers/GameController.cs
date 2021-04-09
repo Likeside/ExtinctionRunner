@@ -25,6 +25,7 @@ namespace ExtinctionRunner
         [SerializeField] private float _asteroidsSpawnRate;
 
         private List<IExecutable> _listOfExecutables = new List<IExecutable>();
+        private List<IFixedExecutable> _listOfFixedExecutables = new List<IFixedExecutable>();
         private List<IStartable> _listOfStartables = new List<IStartable>();
 
         private void Start()
@@ -39,6 +40,7 @@ namespace ExtinctionRunner
 
             AsteroidsController asteroidsController = new AsteroidsController(_asteroidsMaxAmount, _asteroidsSpawnRate);
             _listOfExecutables.Add(asteroidsController);
+            _listOfFixedExecutables.Add(asteroidsController);
             _listOfStartables.Add(asteroidsController);
 
 
@@ -55,6 +57,14 @@ namespace ExtinctionRunner
             foreach (var executable in _listOfExecutables)
             {
                 executable.Execute();
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            foreach (var fixedExecutable in _listOfFixedExecutables)
+            {
+                fixedExecutable.IFixedExecute();
             }
         }
     }

@@ -16,10 +16,14 @@ namespace Controllers
             _listOfAsteroidTypes = Resources.LoadAll<AsteroidModelSO>("").ToList();
         }
 
-       public void SpawnSingleAsteroid(Transform spawnerGO)
-        {
-            GameObject.Instantiate(_listOfAsteroidTypes[Random.Range(0, _listOfAsteroidTypes.Count)]._asteroid, spawnerGO);
-        }
+       public (AsteroidModelSO, GameObject) SpawnSingleAsteroid(Transform spawnerGO)
+       {
+           AsteroidModelSO asteroidModelSo = _listOfAsteroidTypes[Random.Range(0, _listOfAsteroidTypes.Count)];
+           
+            var a = GameObject.Instantiate(asteroidModelSo._asteroid, spawnerGO);
+            (AsteroidModelSO, GameObject) tuple = (asteroidModelSo, a);
+            return tuple;
+       }
 
        public void SpawnAllAsteroids(Transform[] spawnersGo)
         {

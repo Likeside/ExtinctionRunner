@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ExtinctionRunner;
 using ExtinctionRunner.Interfaces;
 using ExtinctionRunner.Views;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Controllers
         private float _timer;
         private AsteroidsSpawner _asteroidsSpawner;
         private Transform[] _spawnersGoTransforms;
+        private List<(AsteroidModelSO, GameObject)> _listOfAsteroids; //хранит в себе конкретный астероид и модель, которая его создала
         
 
         public AsteroidsController(int asteroidsMaxAmount, float asteroidSpawnRate)
@@ -21,7 +23,8 @@ namespace Controllers
             _asteroidsSpawner = new AsteroidsSpawner(_asteroidsMaxAmount);
             SpawnerGO[] tempList = GameObject.FindObjectsOfType<SpawnerGO>();
             _spawnersGoTransforms = new Transform[tempList.Length];
-
+            _listOfAsteroids = new List<(AsteroidModelSO, GameObject)>();
+            
             for (int i = 0; i < tempList.Length; i++)
             {
                 _spawnersGoTransforms[i] = tempList[i].transform;
@@ -35,19 +38,22 @@ namespace Controllers
         public void Execute()
         {
             _timer -= 1*Time.deltaTime;
-            Debug.Log(_timer);
             if (_timer < 0)
             {
                 _timer = _asteroidSpawnRate;
-                Debug.Log("TimerZero");
-                _asteroidsSpawner.SpawnSingleAsteroid(_spawnersGoTransforms[Random.Range(0, _spawnersGoTransforms.Length)]);
+               var asteroid = _asteroidsSpawner.SpawnSingleAsteroid(_spawnersGoTransforms[Random.Range(0, _spawnersGoTransforms.Length)]);
+               _listOfAsteroids.Add(asteroid);
+            }
+
+            foreach (var asteroid in _listOfAsteroids)
+            {
+                asteroid.Item2.transform.Translate((new Vector3(0, 5, 0) * (Time.deltaTime * asteroid.Item1._speed)), Space.World);
             }
         }
 
         public void OnStart()
         {
             _asteroidsSpawner.SpawnAllAsteroids(_spawnersGoTransforms);
-            Debug.Log("OnstartCalled");
         }
     }
 }

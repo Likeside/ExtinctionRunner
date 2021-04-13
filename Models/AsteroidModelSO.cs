@@ -16,6 +16,8 @@ namespace ExtinctionRunner
         public AsteroidType _type;
         public float _speed;
         public int _damage;
+        public float _spawnRate;
+        public float _defaultSpawnRate;
         public GameObject _asteroid;
         public GameObject _bonus;
     }

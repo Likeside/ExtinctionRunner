@@ -7,31 +7,21 @@ namespace Controllers
 {
     public class AsteroidsSpawner
     {
-        private int _totalAsteroids;
-        private List<AsteroidModelSO> _listOfAsteroidTypes;
         
-        public AsteroidsSpawner(int totalAsteroids)
-        {
-            _totalAsteroids = totalAsteroids;
-            _listOfAsteroidTypes = Resources.LoadAll<AsteroidModelSO>("").ToList();
-        }
-
-       public (AsteroidModelSO, GameObject) SpawnSingleAsteroid(Transform spawnerGO)
+       public GameObject SpawnSingleAsteroid(AsteroidModelSO asteroidModelSo, Transform spawnerGO, float spawnRadius)
        {
-           AsteroidModelSO asteroidModelSo = _listOfAsteroidTypes[Random.Range(0, _listOfAsteroidTypes.Count)];
-           
-            var a = GameObject.Instantiate(asteroidModelSo._asteroid, spawnerGO);
-            (AsteroidModelSO, GameObject) tuple = (asteroidModelSo, a);
-            return tuple;
+           Vector2 randomPositionOnCircle = Random.insideUnitCircle.normalized * spawnRadius;
+           var asteroid = GameObject.Instantiate(asteroidModelSo._asteroid, randomPositionOnCircle, Quaternion.identity, spawnerGO);
+           return asteroid;
        }
 
-       public List<(AsteroidModelSO, GameObject)> SpawnAllAsteroids(Transform[] spawnersGo)
+       public List<GameObject> SpawnSeveralAsteroids(AsteroidModelSO asteroidModelSo, Transform spawnersGo, float spawnRadius, int amountOfAsteroids)
        {
-           List<(AsteroidModelSO, GameObject)> asteroidsList = new List<(AsteroidModelSO, GameObject)>();
-            for (int i = 0; i < _totalAsteroids; i++)
+           List<GameObject> asteroidsList = new List<GameObject>();
+            for (int i = 0; i < amountOfAsteroids; i++)
             {
-               var asteroidTuple = SpawnSingleAsteroid(spawnersGo[Random.Range(0, spawnersGo.Length)]); 
-               asteroidsList.Add(asteroidTuple);//использовать другой рандом
+                var asteroid = SpawnSingleAsteroid(asteroidModelSo, spawnersGo, spawnRadius); 
+               asteroidsList.Add(asteroid);//использовать другой рандом
             }
 
             return asteroidsList;

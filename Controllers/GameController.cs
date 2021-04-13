@@ -19,10 +19,8 @@ namespace ExtinctionRunner
 
         [SerializeField] private LayerMask _groundCheckLayerMask;
         [SerializeField] private LayerMask _waterCheckLayerMask;
-
-      
-        [SerializeField] private int _asteroidsMaxAmount;
-        [SerializeField] private float _asteroidsSpawnRate;
+        
+        [SerializeField] private float _asteroidsSpawnRadius;
 
         [SerializeField] private Transform _meteoritesTarget;
 
@@ -40,7 +38,7 @@ namespace ExtinctionRunner
            
             CoreController coreController = new CoreController(_coreView, inputController, _rotationSpeed);
 
-            AsteroidsController asteroidsController = new AsteroidsController(_asteroidsMaxAmount, _asteroidsSpawnRate, _meteoritesTarget);
+            AsteroidsController asteroidsController = new AsteroidsController(_meteoritesTarget, _asteroidsSpawnRadius);
             _listOfExecutables.Add(asteroidsController);
             _listOfFixedExecutables.Add(asteroidsController);
             _listOfStartables.Add(asteroidsController);

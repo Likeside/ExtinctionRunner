@@ -14,14 +14,16 @@ namespace Controllers
         private float _timer;
         private AsteroidsSpawner _asteroidsSpawner;
         private Transform[] _spawnersGoTransforms;
-        private List<(AsteroidModelSO, GameObject)> _listOfAsteroids; //хранит в себе конкретный астероид и модель, которая его создала
+        private List<(AsteroidModelSO, GameObject)> _listOfAsteroids; //хранит в себе конкретный астероид и модель, которая его создала (Заменить на словарь с РБ?)
         private List<Rigidbody2D> _listOfAsteroidsRB;
+        private Transform _meteoritesTarget;
         
 
-        public AsteroidsController(int asteroidsMaxAmount, float asteroidSpawnRate)
+        public AsteroidsController(int asteroidsMaxAmount, float asteroidSpawnRate, Transform meteoritesTarget)
         {
             _asteroidsMaxAmount = asteroidsMaxAmount;
             _asteroidSpawnRate = asteroidSpawnRate;
+            _meteoritesTarget = meteoritesTarget;
             _asteroidsSpawner = new AsteroidsSpawner(_asteroidsMaxAmount);
             SpawnerGO[] tempList = GameObject.FindObjectsOfType<SpawnerGO>();
             _spawnersGoTransforms = new Transform[tempList.Length];
@@ -59,7 +61,8 @@ namespace Controllers
             foreach (var asteroidRB in _listOfAsteroidsRB)
             {
                 //  asteroid.Item2.transform.Translate((new Vector3(0, 5, 0) * (Time.deltaTime * asteroid.Item1._speed)), Space.World);
-                asteroidRB.MovePosition(asteroidRB.position + new Vector2(0, 1)*Time.deltaTime);
+                Vector2 direction = (Vector2)_meteoritesTarget.transform.position - (Vector2)asteroidRB.position;
+                asteroidRB.MovePosition(asteroidRB.position + direction.normalized*Time.deltaTime); // добавить скорость (получить СО астероида с конкретным РБ, возможно стоит использовать словарь)
             }
         }
         public void OnStart()

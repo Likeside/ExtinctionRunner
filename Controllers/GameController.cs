@@ -24,6 +24,8 @@ namespace ExtinctionRunner
         [SerializeField] private int _asteroidsMaxAmount;
         [SerializeField] private float _asteroidsSpawnRate;
 
+        [SerializeField] private Transform _meteoritesTarget;
+
         private List<IExecutable> _listOfExecutables = new List<IExecutable>();
         private List<IFixedExecutable> _listOfFixedExecutables = new List<IFixedExecutable>();
         private List<IStartable> _listOfStartables = new List<IStartable>();
@@ -38,7 +40,7 @@ namespace ExtinctionRunner
            
             CoreController coreController = new CoreController(_coreView, inputController, _rotationSpeed);
 
-            AsteroidsController asteroidsController = new AsteroidsController(_asteroidsMaxAmount, _asteroidsSpawnRate);
+            AsteroidsController asteroidsController = new AsteroidsController(_asteroidsMaxAmount, _asteroidsSpawnRate, _meteoritesTarget);
             _listOfExecutables.Add(asteroidsController);
             _listOfFixedExecutables.Add(asteroidsController);
             _listOfStartables.Add(asteroidsController);

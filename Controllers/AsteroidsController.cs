@@ -14,7 +14,7 @@ namespace Controllers
         private Transform _spawnerGO;
         private List<AsteroidModelSO> _listOfAsteroidTypes;
         private List<GameObject> _listOfAsteroids;
-        private List<Rigidbody2D> _listOfAsteroidsRB;
+        private List<(Rigidbody2D, float)> _listOfAsteroidsRbSpeed;
         private Transform _meteoritesTarget;
         private float _spawnRadius;
 
@@ -28,7 +28,7 @@ namespace Controllers
             _asteroidsSpawner = new AsteroidsSpawner();
             _spawnerGO = GameObject.FindObjectOfType<SpawnerGO>().GetComponent<Transform>();
             _listOfAsteroids = new List<GameObject>();
-            _listOfAsteroidsRB = new List<Rigidbody2D>();
+            _listOfAsteroidsRbSpeed = new List<(Rigidbody2D, float)>();
          
 
         }
@@ -45,7 +45,8 @@ namespace Controllers
                     asteroidModelSo._spawnRate = asteroidModelSo._defaultSpawnRate;
                     var asteroid = _asteroidsSpawner.SpawnSingleAsteroid(asteroidModelSo, _spawnerGO, _spawnRadius);
                     _listOfAsteroids.Add(asteroid);
-                    _listOfAsteroidsRB.Add(asteroid.GetComponent<Rigidbody2D>());
+                    var tupleRbSpeed = (asteroid.GetComponent<Rigidbody2D>(), asteroidModelSo._speed);
+                    _listOfAsteroidsRbSpeed.Add(tupleRbSpeed);
                 }
             }
         }
@@ -53,10 +54,11 @@ namespace Controllers
         public void IFixedExecute()
         {
             //двигает астероиды
-            foreach (var asteroidRB in _listOfAsteroidsRB)
+            foreach (var asteroidRbSpeed in _listOfAsteroidsRbSpeed)
             {
-                Vector2 direction = (Vector2)_meteoritesTarget.transform.position - (Vector2)asteroidRB.position;
-                asteroidRB.MovePosition(asteroidRB.position + direction.normalized*Time.deltaTime); // добавить скорость (получить СО астероида с конкретным РБ, возможно стоит использовать словарь)
+                Vector2 direction = (Vector2)_meteoritesTarget.transform.position - (Vector2)asteroidRbSpeed.Item1.position;
+                direction.Normalize();
+                asteroidRbSpeed.Item1.MovePosition((Vector2)asteroidRbSpeed.Item1.position + direction * (Time.fixedDeltaTime*asteroidRbSpeed.Item2)); 
             }
         }
         public void OnStart()

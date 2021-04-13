@@ -10,8 +10,9 @@ namespace Controllers
         
        public GameObject SpawnSingleAsteroid(AsteroidModelSO asteroidModelSo, Transform spawnerGO, float spawnRadius)
        {
-           Vector2 randomPositionOnCircle = Random.insideUnitCircle.normalized * spawnRadius;
-           var asteroid = GameObject.Instantiate(asteroidModelSo._asteroid, randomPositionOnCircle, Quaternion.identity, spawnerGO);
+           Vector3 randomPositionOnCircle = Random.insideUnitCircle.normalized * spawnRadius;
+           var asteroid = GameObject.Instantiate(asteroidModelSo._asteroid, spawnerGO.transform.position + randomPositionOnCircle, Quaternion.identity);
+           asteroid.transform.SetParent(spawnerGO);
            return asteroid;
        }
 

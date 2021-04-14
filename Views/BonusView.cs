@@ -1,11 +1,13 @@
-using System;
+using ExtinctionRunner.Interfaces;
 using UnityEngine;
 
 namespace ExtinctionRunner.Views
 {
-    public class AsteroidView: MonoBehaviour
+    public class BonusView: MonoBehaviour
     {
-        public delegate void CollisionHandler(AsteroidView asteroidView, GameObject other);
+        [SerializeField] public BonusTypes bonusType;
+        
+        public delegate void CollisionHandler(BonusView bonusView, GameObject other);
 
         public event CollisionHandler OnCollisionHappened;
         public void OnTriggerEnter2D(Collider2D other)
@@ -13,6 +15,11 @@ namespace ExtinctionRunner.Views
             OnCollisionHappened?.Invoke(this, other.gameObject);
         }
 
+        public void ApplyEffect(IBonusEffect bonusEffect)
+        {
+            bonusEffect.ApplyEffect();
+        }
+        
         public void DestroyThis()
         {
             Destroy(this.gameObject);

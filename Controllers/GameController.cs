@@ -38,7 +38,9 @@ namespace ExtinctionRunner
            
             CoreController coreController = new CoreController(_coreView, inputController, _rotationSpeed);
 
-            AsteroidsController asteroidsController = new AsteroidsController(_meteoritesTarget, _asteroidsSpawnRadius);
+            BonusCollisionController bonusCollisionController = new BonusCollisionController();
+            
+            AsteroidsController asteroidsController = new AsteroidsController(_meteoritesTarget, _asteroidsSpawnRadius, bonusCollisionController);
             _listOfExecutables.Add(asteroidsController);
             _listOfFixedExecutables.Add(asteroidsController);
             _listOfStartables.Add(asteroidsController);

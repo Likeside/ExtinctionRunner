@@ -29,8 +29,7 @@ namespace ExtinctionRunner
 
             if (axis < 0)
             {
-                _coreView.transform.Rotate(_rotationAxis, -(_rotationSpeed*Time.deltaTime));
-
+               _coreView.transform.Rotate(_rotationAxis, -(_rotationSpeed*Time.deltaTime));
             }
         }
 

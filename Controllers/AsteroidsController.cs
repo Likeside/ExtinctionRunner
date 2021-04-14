@@ -11,10 +11,11 @@ namespace Controllers
     {
        
         private AsteroidsSpawner _asteroidsSpawner;
+        private AsteroidsCollisionController _asteroidsCollisionController;
         private Transform _spawnerGO;
         private List<AsteroidModelSO> _listOfAsteroidTypes;
         private List<GameObject> _listOfAsteroids;
-        private List<(Rigidbody2D, float)> _listOfAsteroidsRbSpeed;
+        private Dictionary<Rigidbody2D, float> _listOfAsteroidsRbSpeed;
         private Transform _meteoritesTarget;
         private float _spawnRadius;
 
@@ -26,9 +27,12 @@ namespace Controllers
             _meteoritesTarget = meteoritesTarget;
             _spawnRadius = spawnRadius;
             _asteroidsSpawner = new AsteroidsSpawner();
+            _listOfAsteroidsRbSpeed = new Dictionary<Rigidbody2D, float>();
             _spawnerGO = GameObject.FindObjectOfType<SpawnerGO>().GetComponent<Transform>();
+            _asteroidsCollisionController = new AsteroidsCollisionController(_listOfAsteroidsRbSpeed, _spawnerGO);
+           
             _listOfAsteroids = new List<GameObject>();
-            _listOfAsteroidsRbSpeed = new List<(Rigidbody2D, float)>();
+            
          
 
         }
@@ -36,30 +40,12 @@ namespace Controllers
         
         public void Execute()
         {
-
-            foreach (var asteroidModelSo in _listOfAsteroidTypes)
-            {
-                asteroidModelSo._spawnRate -= 1 * Time.deltaTime;
-                if (asteroidModelSo._spawnRate < 0)
-                {
-                    asteroidModelSo._spawnRate = asteroidModelSo._defaultSpawnRate;
-                    var asteroid = _asteroidsSpawner.SpawnSingleAsteroid(asteroidModelSo, _spawnerGO, _spawnRadius);
-                    _listOfAsteroids.Add(asteroid);
-                    var tupleRbSpeed = (asteroid.GetComponent<Rigidbody2D>(), asteroidModelSo._speed);
-                    _listOfAsteroidsRbSpeed.Add(tupleRbSpeed);
-                }
-            }
+            SpawnAsteroids();
         }
 
         public void IFixedExecute()
         {
-            //двигает астероиды
-            foreach (var asteroidRbSpeed in _listOfAsteroidsRbSpeed)
-            {
-                Vector2 direction = (Vector2)_meteoritesTarget.transform.position - (Vector2)asteroidRbSpeed.Item1.position;
-                direction.Normalize();
-                asteroidRbSpeed.Item1.MovePosition((Vector2)asteroidRbSpeed.Item1.position + direction * (Time.fixedDeltaTime*asteroidRbSpeed.Item2)); 
-            }
+            MoveAsteroids();
         }
         public void OnStart()
         {
@@ -71,9 +57,33 @@ namespace Controllers
                _listOfAsteroids.Add(asteroid);
            }
            */
-
         }
 
+        private void SpawnAsteroids()
+        {
+            foreach (var asteroidModelSo in _listOfAsteroidTypes)
+            {
+                asteroidModelSo._spawnRate -= 1 * Time.deltaTime;
+                if (asteroidModelSo._spawnRate < 0)
+                {
+                    asteroidModelSo._spawnRate = asteroidModelSo._defaultSpawnRate;
+                    var asteroid = _asteroidsSpawner.SpawnSingleAsteroid(asteroidModelSo, _spawnerGO, _spawnRadius);
+                    _listOfAsteroids.Add(asteroid);
+                    _listOfAsteroidsRbSpeed.Add(asteroid.GetComponent<Rigidbody2D>(), asteroidModelSo._speed);
+                    _asteroidsCollisionController.AddAsteroidToHandler(asteroid, asteroidModelSo);
+                }
+            }
+        }
+        
+        private void MoveAsteroids()
+        {
+            foreach (var asteroidRbSpeed in _listOfAsteroidsRbSpeed)
+            {
+                Vector2 direction = (Vector2) _meteoritesTarget.transform.position - asteroidRbSpeed.Key.position;
+                direction.Normalize();
+                asteroidRbSpeed.Key.MovePosition(asteroidRbSpeed.Key.position + direction * (Time.fixedDeltaTime*asteroidRbSpeed.Value));
+            }
+        }
        
     }
 }

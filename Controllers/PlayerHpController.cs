@@ -1,5 +1,6 @@
 using ExtinctionRunner;
 using ExtinctionRunner.Views;
+using UnityEngine;
 
 namespace Controllers
 {
@@ -21,9 +22,11 @@ namespace Controllers
             _hpModel.CurrentHealthPoints -= damage;
         }
 
-        void ApplyHealing(float hp)
+        public void ApplyHealing(float hp)
         {
             _hpModel.CurrentHealthPoints += hp;
+            
+            Debug.Log(_hpModel.CurrentHealthPoints);
         }
         
         

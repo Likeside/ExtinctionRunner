@@ -24,6 +24,13 @@ namespace ExtinctionRunner
 
         [SerializeField] private Transform _meteoritesTarget;
 
+
+
+        [SerializeField] private float _playerMaxHp;
+        [SerializeField] private float _healingHealHp;
+        
+        
+        
         private List<IExecutable> _listOfExecutables = new List<IExecutable>();
         private List<IFixedExecutable> _listOfFixedExecutables = new List<IFixedExecutable>();
         private List<IStartable> _listOfStartables = new List<IStartable>();
@@ -38,7 +45,12 @@ namespace ExtinctionRunner
            
             CoreController coreController = new CoreController(_coreView, inputController, _rotationSpeed);
 
-            BonusCollisionController bonusCollisionController = new BonusCollisionController();
+
+            HpModel hpModel = new HpModel(_playerMaxHp);
+            PlayerHpController playerHpController = new PlayerHpController(_playerView, hpModel);
+            BonusesModel bonusesModel = new BonusesModel(playerHpController, _healingHealHp);
+            
+            BonusCollisionController bonusCollisionController = new BonusCollisionController(bonusesModel);
             
             AsteroidsController asteroidsController = new AsteroidsController(_meteoritesTarget, _asteroidsSpawnRadius, bonusCollisionController);
             _listOfExecutables.Add(asteroidsController);

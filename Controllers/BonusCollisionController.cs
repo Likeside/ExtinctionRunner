@@ -12,11 +12,11 @@ namespace Controllers
     {
         private Dictionary<BonusTypes, IBonusEffect> _bonusEffects;
         
-        public BonusCollisionController()
+        public BonusCollisionController(BonusesModel bonusesModel)
         {
             _bonusEffects = new Dictionary<BonusTypes, IBonusEffect>()
             {
-                {BonusTypes.Healing, new HealingBonusEffect()},
+                {BonusTypes.Healing, new HealingBonusEffect(bonusesModel._playerHpController, bonusesModel.HealHp)},
                 {BonusTypes.Speed, new SpeedBonusEffect()},
                 {BonusTypes.Volcano, new VolcanoBonusEffect()}
             };

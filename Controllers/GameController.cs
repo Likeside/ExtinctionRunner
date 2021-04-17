@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Controllers;
 using ExtinctionRunner.Interfaces;
 using ExtinctionRunner.Views;
+using SavingGame;
 using UnityEngine;
 
 namespace ExtinctionRunner
@@ -28,6 +29,10 @@ namespace ExtinctionRunner
 
         [SerializeField] private float _playerMaxHp;
         [SerializeField] private float _healingHealHp;
+
+
+        [SerializeField] private float _speedBonus;
+        [SerializeField] private float _timerForSpeedBonus;
         
         
         
@@ -48,7 +53,9 @@ namespace ExtinctionRunner
 
             HpModel hpModel = new HpModel(_playerMaxHp);
             PlayerHpController playerHpController = new PlayerHpController(_playerView, hpModel);
-            BonusesModel bonusesModel = new BonusesModel(playerHpController, _healingHealHp);
+
+            ScoreManager.InitializeScore();
+            BonusesModel bonusesModel = new BonusesModel(playerHpController, _healingHealHp, coreController, _speedBonus, _timerForSpeedBonus, _listOfExecutables);
             
             BonusCollisionController bonusCollisionController = new BonusCollisionController(bonusesModel);
             
@@ -64,6 +71,8 @@ namespace ExtinctionRunner
                 startable.OnStart();
                 
             }
+
+            SaveSystem.LoadGame();
         }
         
         void Update()

@@ -1,28 +1,39 @@
+using System.Collections.Generic;
 using Controllers;
+using ExtinctionRunner.Interfaces;
 using UnityEditorInternal.Profiling.Memory.Experimental;
+using UnityEngine;
 
 namespace ExtinctionRunner
 {
     public class BonusesModel
     {
         //Healing bonus fields
-        public PlayerHpController _playerHpController;
+        public PlayerHpController PlayerHpController;
         public float HealHp { get; set; }
         
         //Speed bonus fields
-        public CoreRotationSpeedController _coreRotationSpeedController;
+        public CoreController CoreController;
         public float SpeedBonus { get; set; }
+        public float Timer { get; set; }
+        public List<IExecutable> ListOFExecutables;
         
         //Volcano bonus fields
-        public VolcanoBonusController _volcanoBonusController;
-        public int AmountAdded { get; set; }
+        public int ScoreBonus { get; set; }
 
 
 
-        public BonusesModel(PlayerHpController playerHpController, float healHp) //добавить остальные бонусы
+        public BonusesModel(PlayerHpController playerHpController, float healHp, CoreController coreController, float speedBonus, float timer, List<IExecutable> listOfExecutables) //добавить остальные бонусы
         {
-            _playerHpController = playerHpController;
+            //Healing bonus 
+            PlayerHpController = playerHpController;
             HealHp = healHp;
+            
+            //Speed bonus
+            CoreController = coreController;
+            SpeedBonus = speedBonus;
+            Timer = timer;
+            ListOFExecutables = listOfExecutables;
         }
 
     }

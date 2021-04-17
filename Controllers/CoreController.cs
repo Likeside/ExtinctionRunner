@@ -8,7 +8,7 @@ namespace ExtinctionRunner
     {
         private CoreView _coreView;
         private InputController _inputController;
-        private float _rotationSpeed;
+        public float _rotationSpeed;
         private Vector3 _rotationAxis = new Vector3(0, 0, 1);
 
         public CoreController(CoreView coreView, InputController inputController, float rotationSpeed)

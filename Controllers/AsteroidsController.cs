@@ -22,19 +22,14 @@ namespace Controllers
 
         public AsteroidsController(Transform meteoritesTarget, float spawnRadius, BonusCollisionController bonusCollisionController)
         {
-
             _listOfAsteroidTypes = Resources.LoadAll<AsteroidModelSO>("").ToList();
             _meteoritesTarget = meteoritesTarget;
             _spawnRadius = spawnRadius;
             _asteroidsSpawner = new AsteroidsSpawner();
             _listOfAsteroidsRbSpeed = new Dictionary<Rigidbody2D, float>();
             _spawnerGO = GameObject.FindObjectOfType<SpawnerGO>().GetComponent<Transform>();
-            _asteroidsCollisionController = new AsteroidsCollisionController(_listOfAsteroidsRbSpeed, _spawnerGO, bonusCollisionController);
-           
+            _asteroidsCollisionController = new AsteroidsCollisionController(_listOfAsteroidsRbSpeed, _spawnerGO, bonusCollisionController, _meteoritesTarget);
             _listOfAsteroids = new List<GameObject>();
-            
-         
-
         }
         
         
@@ -67,7 +62,7 @@ namespace Controllers
                 if (asteroidModelSo._spawnRate < 0)
                 {
                     asteroidModelSo._spawnRate = asteroidModelSo._defaultSpawnRate;
-                    var asteroid = _asteroidsSpawner.SpawnSingleAsteroid(asteroidModelSo, _spawnerGO, _spawnRadius);
+                    var asteroid = _asteroidsSpawner.SpawnSingleAsteroid(asteroidModelSo, _spawnerGO, _spawnRadius, _meteoritesTarget);
                     _listOfAsteroids.Add(asteroid);
                     _listOfAsteroidsRbSpeed.Add(asteroid.GetComponent<Rigidbody2D>(), asteroidModelSo._speed);
                     _asteroidsCollisionController.AddAsteroidToHandler(asteroid, asteroidModelSo);
@@ -84,6 +79,5 @@ namespace Controllers
                 asteroidRbSpeed.Key.MovePosition(asteroidRbSpeed.Key.position + direction * (Time.fixedDeltaTime*asteroidRbSpeed.Value));
             }
         }
-       
     }
 }

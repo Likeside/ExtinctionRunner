@@ -20,6 +20,7 @@ namespace ExtinctionRunner
         public float _defaultSpawnRate;
         public GameObject _asteroid;
         public GameObject _bonus;
+        public float _bonusHeightFromPlanet;
     }
 
 }

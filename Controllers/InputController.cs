@@ -15,7 +15,7 @@ namespace ExtinctionRunner
             var horizontalAxis = Input.GetAxis("Horizontal");
             OnArrowPressed?.Invoke(horizontalAxis);
 
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Jump")) //Linux machine returns "O" when spacebar is pressed, need to fix in preferences before build
             {
                 OnJumpButtonPressed?.Invoke();
             }

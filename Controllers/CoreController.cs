@@ -20,7 +20,7 @@ namespace ExtinctionRunner
             _inputController.OnArrowPressed += Rotate;
         }
 
-        void Rotate(float axis)
+       private void Rotate(float axis)
         {
             if (axis > 0)
             {

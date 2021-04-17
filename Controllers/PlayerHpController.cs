@@ -20,6 +20,7 @@ namespace Controllers
         void ApplyDamage(float damage)
         {
             _hpModel.CurrentHealthPoints -= damage;
+            Debug.Log(_hpModel.CurrentHealthPoints);
         }
 
         public void ApplyHealing(float hp)

@@ -1,6 +1,6 @@
 namespace Controllers
 {
-    public class CoreRotationSpeedController
+    public class SceneLoader
     {
         
     }

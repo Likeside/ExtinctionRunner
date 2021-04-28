@@ -64,15 +64,11 @@ namespace ExtinctionRunner
             _listOfFixedExecutables.Add(asteroidsController);
             _listOfStartables.Add(asteroidsController);
 
-
-
+            
             foreach (var startable in _listOfStartables)
             {
                 startable.OnStart();
-                
             }
-
-            SaveSystem.LoadGame();
         }
         
         void Update()

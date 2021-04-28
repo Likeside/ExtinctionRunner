@@ -36,9 +36,11 @@ namespace Controllers
                 if (_asteroidsDictionary[asteroidView]._bonus != null)
                 {
                     Vector3 asteroidPos = asteroidView.transform.position;
+                    Vector3 asteroidRot = asteroidView.transform.rotation.eulerAngles;
                     Vector3 bonusPosDirection = (asteroidPos - _meteoritesTarget.transform.position).normalized;
+                    Vector3 bonusRotation = asteroidRot + new Vector3(0, 0, 90);
                     var bonus = GameObject.Instantiate(_asteroidsDictionary[asteroidView]._bonus,
-                        asteroidPos + bonusPosDirection * _asteroidsDictionary[asteroidView]._bonusHeightFromPlanet, Quaternion.identity);
+                        asteroidPos + bonusPosDirection * _asteroidsDictionary[asteroidView]._bonusHeightFromPlanet, Quaternion.Euler(bonusRotation));
                     _bonusCollisionController.AddBonusToHandler(bonus);
                     bonus.transform.SetParent(_bonusParent);
                 }

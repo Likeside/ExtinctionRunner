@@ -8,26 +8,32 @@ namespace Controllers
     {
         private PlayerView _playerView;
         private HpModel _hpModel;
+        private HealthBarSliderView _healthBarSliderView;
 
         public PlayerHpController(PlayerView playerView, HpModel hpModel)
         {
             _playerView = playerView;
             _hpModel = hpModel;
             _playerView.OnAsteroidCollided += ApplyDamage;
+            _healthBarSliderView = GameObject.FindObjectOfType<HealthBarSliderView>();
         }
 
 
         void ApplyDamage(float damage)
         {
             _hpModel.CurrentHealthPoints -= damage;
+            _healthBarSliderView.slider.value = _hpModel.CurrentHealthPoints;
             Debug.Log(_hpModel.CurrentHealthPoints);
         }
 
         public void ApplyHealing(float hp)
         {
-            _hpModel.CurrentHealthPoints += hp;
-            
-            Debug.Log(_hpModel.CurrentHealthPoints);
+            if (_hpModel.CurrentHealthPoints <= 100)
+            {
+                _hpModel.CurrentHealthPoints += hp;
+                _healthBarSliderView.slider.value = _hpModel.CurrentHealthPoints;
+                Debug.Log(_hpModel.CurrentHealthPoints);
+            }
         }
         
         

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Dynamic;
 using ExtinctionRunner;
 using ExtinctionRunner.Interfaces;
+using ExtinctionRunner.Views;
 using UnityEngine;
+using TMPro;
 
 namespace BonusEffects
 {
@@ -15,6 +17,7 @@ namespace BonusEffects
         private CoreController _coreController;
         private List<IExecutable> _listOfExecutables;
         private bool isActive = false;
+        private TextMeshProUGUI _text;
 
 
         public SpeedBonusEffect(CoreController coreController, float speedMultiplier, float timer, List<IExecutable> _listOfExecutables)
@@ -24,6 +27,8 @@ namespace BonusEffects
             _timerDefaultValue = _timer;
             _coreController = coreController;
             _listOfExecutables.Add(this);
+            _text = GameObject.FindObjectOfType<SpeedText>().text;
+
         }
         public void ApplyEffect()
         {
@@ -55,12 +60,14 @@ namespace BonusEffects
             if (isActive)
             {
                 _timer -= Time.deltaTime * 1;
+                _text.text = _timer.ToString("n2");
                 Debug.Log(_timer);
             }
 
             if (_timer < 0)
             {
                 SpeedDown();
+                _text.text = "0";
                 _timer = _timerDefaultValue;
             }
         }

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Controllers;
 using ExtinctionRunner.Interfaces;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 namespace ExtinctionRunner

@@ -10,14 +10,18 @@ namespace ExtinctionRunner
 
         public delegate void JumpHandler();
         public event JumpHandler OnJumpButtonPressed;
+
+        public float horizontalAxis = 0;
+        public bool jumpPressed = false;
         public void Execute()
         {
-            var horizontalAxis = Input.GetAxis("Horizontal");
+            //horizontalAxis = Input.GetAxis("Horizontal");
             OnArrowPressed?.Invoke(horizontalAxis);
 
-            if (Input.GetButtonDown("Jump")) //Linux machine returns "O" when spacebar is pressed, need to fix in preferences before build
+            if (jumpPressed) //Linux machine returns "O" when spacebar is pressed, need to fix in preferences before build
             {
                 OnJumpButtonPressed?.Invoke();
+                jumpPressed = false;
             }
         }
     }

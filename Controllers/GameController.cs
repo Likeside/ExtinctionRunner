@@ -42,7 +42,7 @@ namespace ExtinctionRunner
 
         private void Start()
         {
-            InputController inputController = new InputController();
+            InputController inputController = FindObjectOfType<UiInputView>()._inputController;
             _listOfExecutables.Add(inputController);
             
             PlayerController playerController = new PlayerController(_playerView, inputController, _groundCheckLayerMask, _waterCheckLayerMask, _jumpForce);

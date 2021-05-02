@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using ExtinctionRunner;
 using ExtinctionRunner.Views;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 namespace Controllers

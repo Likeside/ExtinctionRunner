@@ -6,7 +6,7 @@ namespace ExtinctionRunner.Views
     public class BonusView: MonoBehaviour
     {
         [SerializeField] public BonusTypes bonusType;
-        
+        [SerializeField] public SpriteRenderer spriteRenderer;
         public delegate void CollisionHandler(BonusView bonusView, GameObject other);
 
         public event CollisionHandler OnCollisionHappened;

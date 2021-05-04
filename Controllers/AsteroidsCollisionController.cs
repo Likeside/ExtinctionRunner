@@ -12,14 +12,16 @@ namespace Controllers
         private Dictionary<AsteroidView, AsteroidModelSO> _asteroidsDictionary;
         private Dictionary<Rigidbody2D, float> _listOfAsteroidsRbSpeed;
         private BonusCollisionController _bonusCollisionController;
+       private BonusesAnimationController _bonusesAnimationController;
 
-        public AsteroidsCollisionController(Dictionary<Rigidbody2D, float> listOfAsteroidsRbSpeed, Transform bonusParent, BonusCollisionController bonusCollisionController, Transform meteoritesTarget)
+        public AsteroidsCollisionController(Dictionary<Rigidbody2D, float> listOfAsteroidsRbSpeed, Transform bonusParent, BonusCollisionController bonusCollisionController, BonusesAnimationController bonusesAnimationController, Transform meteoritesTarget)
         {
             _bonusParent = bonusParent;
             _meteoritesTarget = meteoritesTarget;
             _asteroidsDictionary = new Dictionary<AsteroidView, AsteroidModelSO>();
             _listOfAsteroidsRbSpeed = listOfAsteroidsRbSpeed;
             _bonusCollisionController = bonusCollisionController;
+          _bonusesAnimationController = bonusesAnimationController;
         }
         void HandleCollision(AsteroidView asteroidView, GameObject other)
         {
@@ -42,6 +44,7 @@ namespace Controllers
                         asteroidPos + bonusPosDirection * _asteroidsDictionary[asteroidView]._bonusHeightFromPlanet, Quaternion.Euler(bonusRotation));
                     _bonusCollisionController.AddBonusToHandler(bonus);
                     bonus.transform.SetParent(_bonusParent);
+                    _bonusesAnimationController.AddToBonusAnimationController(bonus.GetComponent<BonusView>());
                 }
 
                 asteroidView.OnCollisionHappened -= HandleCollision;

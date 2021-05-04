@@ -45,7 +45,12 @@ namespace ExtinctionRunner
             InputController inputController = FindObjectOfType<UiInputView>()._inputController;
             _listOfExecutables.Add(inputController);
             
-            PlayerController playerController = new PlayerController(_playerView, inputController, _groundCheckLayerMask, _waterCheckLayerMask, _jumpForce);
+            AnimationModelSO config = Resources.Load<AnimationModelSO>("DinoAnimation");
+            AnimationController animationController = new AnimationController(config);
+            BonusesAnimationController bonusesAnimationController = new BonusesAnimationController(animationController);
+            _listOfExecutables.Add(bonusesAnimationController);
+                
+            PlayerController playerController = new PlayerController(_playerView, animationController, inputController, _groundCheckLayerMask, _waterCheckLayerMask, _jumpForce);
             _listOfExecutables.Add(playerController);
            
             CoreController coreController = new CoreController(_coreView, inputController, _rotationSpeed);
@@ -59,7 +64,7 @@ namespace ExtinctionRunner
             
             BonusCollisionController bonusCollisionController = new BonusCollisionController(bonusesModel);
             
-            AsteroidsController asteroidsController = new AsteroidsController(_meteoritesTarget, _asteroidsSpawnRadius, bonusCollisionController);
+            AsteroidsController asteroidsController = new AsteroidsController(_meteoritesTarget, _asteroidsSpawnRadius, bonusCollisionController, bonusesAnimationController);
             _listOfExecutables.Add(asteroidsController);
             _listOfFixedExecutables.Add(asteroidsController);
             _listOfStartables.Add(asteroidsController);

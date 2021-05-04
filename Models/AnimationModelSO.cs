@@ -10,7 +10,10 @@ namespace ExtinctionRunner
         {
             Idle,
             Walk,
-            Jump
+            Jump,
+            HealthBonusIdle,
+            SpeedBonusIdle,
+            VolcanoBonusIdle
         }
 
         [CreateAssetMenu(fileName = "SpriteAnimationsModelSO", menuName = "Configs/SpriteAnimationsModelSO", order = 1)]

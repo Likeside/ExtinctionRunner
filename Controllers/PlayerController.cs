@@ -21,7 +21,7 @@ namespace ExtinctionRunner
         private Vector3 _scaleVector2;
 
 
-        public PlayerController(PlayerView playerView, InputController inputController, LayerMask groundCheckLayerMask, LayerMask waterCheckLayerMask, float jumpForce)
+        public PlayerController(PlayerView playerView, AnimationController animationController, InputController inputController, LayerMask groundCheckLayerMask, LayerMask waterCheckLayerMask, float jumpForce)
         {
             _playerView = playerView;
             _playerTransform = _playerView.GetComponent<Transform>();
@@ -33,8 +33,7 @@ namespace ExtinctionRunner
                 new GroundCheckController(waterCheckLayerMask, _playerView.GetComponent<Collider2D>(), 0.5f);
             _playerGroundCheckController =
                 new GroundCheckController(groundCheckLayerMask, _playerView.GetComponent<Collider2D>(), 0.01f);
-            AnimationModelSO config = Resources.Load<AnimationModelSO>("DinoAnimation");
-            _animationController = new AnimationController(config);
+            _animationController = animationController;
             _inputController.OnArrowPressed += Move;
             _inputController.OnJumpButtonPressed += Jump;
 

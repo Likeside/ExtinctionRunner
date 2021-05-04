@@ -44,6 +44,7 @@ namespace Controllers
         private void RemoveFromBonusAnimationController(BonusView bonusView, GameObject other = null)
         {
             _bonusViews.Remove(bonusView);
+            _animationController.StopAnimation(bonusView.spriteRenderer);
         }
 
         public void Dispose()

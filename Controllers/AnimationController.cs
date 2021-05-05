@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ExtinctionRunner.Interfaces;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ExtinctionRunner
 {
@@ -41,6 +42,9 @@ namespace ExtinctionRunner
         private Dictionary<SpriteRenderer, Animation> _activeAnimations =
             new Dictionary<SpriteRenderer, Animation>();
 
+        private Dictionary<Image, Animation> _activeImageAnimations = 
+            new Dictionary<Image, Animation>();
+
         public AnimationController(AnimationModelSO config)
         {
             _config = config;
@@ -71,6 +75,32 @@ namespace ExtinctionRunner
                 });
             }
         }
+        
+        public void StartAnimation(Image spriteRenderer, Track track, bool loop, float speed)
+        {
+            if (_activeImageAnimations.TryGetValue(spriteRenderer, out var animation))
+            {
+                animation.Loop = loop;
+                animation.Speed = speed;
+                animation.Sleeps = false;
+                if (animation.Track != track)
+                {
+                    animation.Track = track;
+                    animation.Sprites = _config.Sequences.Find(sequence => sequence.Track == track).Sprites;
+                    animation.Counter = 0;
+                }
+            }
+            else
+            {
+                _activeImageAnimations.Add(spriteRenderer, new Animation()
+                {
+                    Track = track,
+                    Sprites = _config.Sequences.Find(sequence => sequence.Track == track).Sprites,
+                    Loop = loop,
+                    Speed = speed
+                });
+            }
+        }
 
         public void StopAnimation(SpriteRenderer sprite)
         {
@@ -79,10 +109,24 @@ namespace ExtinctionRunner
                 _activeAnimations.Remove(sprite);
             }
         }
+        public void StopAnimation(Image sprite)
+        {
+            if (_activeImageAnimations.ContainsKey(sprite))
+            {
+                _activeImageAnimations.Remove(sprite);
+            }
+        }
+        
 
         public void Execute()
         {
             foreach (var animation in _activeAnimations)
+            {
+                animation.Value.Execute();
+                animation.Key.sprite = animation.Value.Sprites[(int) animation.Value.Counter];
+            }
+            
+            foreach (var animation in _activeImageAnimations)
             {
                 animation.Value.Execute();
                 animation.Key.sprite = animation.Value.Sprites[(int) animation.Value.Counter];

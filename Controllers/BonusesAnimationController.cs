@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    public class BonusesAnimationController: IExecutable, IDisposable
+    public class BonusesAnimationController: IExecutable, IDisposable, IBonusHandler
     {
         
         private List<BonusView> _bonusViews;
@@ -35,7 +35,7 @@ namespace Controllers
             }
         }
 
-        public void AddToBonusAnimationController(BonusView bonusView)
+        public void AddBonusToHandler(BonusView bonusView)
         {
             _bonusViews.Add(bonusView);
             bonusView.OnCollisionHappened += RemoveFromBonusAnimationController;

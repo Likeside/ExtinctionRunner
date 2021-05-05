@@ -44,12 +44,16 @@ namespace ExtinctionRunner
         {
             InputController inputController = FindObjectOfType<UiInputView>()._inputController;
             _listOfExecutables.Add(inputController);
+            _listOfFixedExecutables.Add(inputController);
             
             AnimationModelSO config = Resources.Load<AnimationModelSO>("DinoAnimation");
             AnimationController animationController = new AnimationController(config);
             BonusesAnimationController bonusesAnimationController = new BonusesAnimationController(animationController);
             _listOfExecutables.Add(bonusesAnimationController);
-                
+            BonusCollectedAnimationController bonusCollectedAnimationController =
+                new BonusCollectedAnimationController(animationController); 
+            
+            
             PlayerController playerController = new PlayerController(_playerView, animationController, inputController, _groundCheckLayerMask, _waterCheckLayerMask, _jumpForce);
             _listOfExecutables.Add(playerController);
            
@@ -63,8 +67,11 @@ namespace ExtinctionRunner
             BonusesModel bonusesModel = new BonusesModel(playerHpController, _healingHealHp, coreController, _speedBonus, _timerForSpeedBonus, _listOfExecutables);
             
             BonusCollisionController bonusCollisionController = new BonusCollisionController(bonusesModel);
+
+            BonusesHandler bonusesHandler = new BonusesHandler(bonusCollisionController, bonusesAnimationController,
+                bonusCollectedAnimationController);
             
-            AsteroidsController asteroidsController = new AsteroidsController(_meteoritesTarget, _asteroidsSpawnRadius, bonusCollisionController, bonusesAnimationController);
+            AsteroidsController asteroidsController = new AsteroidsController(_meteoritesTarget, _asteroidsSpawnRadius, bonusesHandler, bonusesAnimationController);
             _listOfExecutables.Add(asteroidsController);
             _listOfFixedExecutables.Add(asteroidsController);
             _listOfStartables.Add(asteroidsController);

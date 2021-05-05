@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Controllers
 {
-    public class BonusCollisionController
+    public class BonusCollisionController: IBonusHandler
     {
         private Dictionary<BonusTypes, IBonusEffect> _bonusEffects;
         
@@ -25,18 +25,17 @@ namespace Controllers
 
         void HandleCollision(BonusView bonusView, GameObject other)
         {
-            bool isPlayer = other.TryGetComponent(out PlayerView playerView);
-            if (isPlayer)
-            {
+          //  bool isPlayer = other.TryGetComponent(out PlayerView playerView);
+           // if (isPlayer)
+          //  {
                 bonusView.ApplyEffect(_bonusEffects[bonusView.bonusType]);
                 bonusView.OnCollisionHappened -= HandleCollision;
                 bonusView.DestroyThis();
-            }
+           // }
         }
 
-      public void AddBonusToHandler(GameObject bonus)
+      public void AddBonusToHandler(BonusView bonusView)
         {
-            BonusView bonusView = bonus.GetComponent<BonusView>();
             bonusView.OnCollisionHappened += HandleCollision;
         }
         

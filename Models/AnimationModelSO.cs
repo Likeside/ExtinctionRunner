@@ -13,7 +13,10 @@ namespace ExtinctionRunner
             Jump,
             HealthBonusIdle,
             SpeedBonusIdle,
-            VolcanoBonusIdle
+            VolcanoBonusIdle,
+            HealingCollected,
+            SpeedCollected,
+            VolcanoCollected
         }
 
         [CreateAssetMenu(fileName = "SpriteAnimationsModelSO", menuName = "Configs/SpriteAnimationsModelSO", order = 1)]

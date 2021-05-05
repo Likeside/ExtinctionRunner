@@ -11,17 +11,15 @@ namespace Controllers
         private Transform _meteoritesTarget;
         private Dictionary<AsteroidView, AsteroidModelSO> _asteroidsDictionary;
         private Dictionary<Rigidbody2D, float> _listOfAsteroidsRbSpeed;
-        private BonusCollisionController _bonusCollisionController;
-       private BonusesAnimationController _bonusesAnimationController;
+        private BonusesHandler _bonusesHandler;
 
-        public AsteroidsCollisionController(Dictionary<Rigidbody2D, float> listOfAsteroidsRbSpeed, Transform bonusParent, BonusCollisionController bonusCollisionController, BonusesAnimationController bonusesAnimationController, Transform meteoritesTarget)
+        public AsteroidsCollisionController(Dictionary<Rigidbody2D, float> listOfAsteroidsRbSpeed, Transform bonusParent, BonusesHandler bonusHandler, Transform meteoritesTarget)
         {
             _bonusParent = bonusParent;
             _meteoritesTarget = meteoritesTarget;
             _asteroidsDictionary = new Dictionary<AsteroidView, AsteroidModelSO>();
             _listOfAsteroidsRbSpeed = listOfAsteroidsRbSpeed;
-            _bonusCollisionController = bonusCollisionController;
-          _bonusesAnimationController = bonusesAnimationController;
+            _bonusesHandler = bonusHandler;
         }
         void HandleCollision(AsteroidView asteroidView, GameObject other)
         {
@@ -41,10 +39,10 @@ namespace Controllers
                     Vector3 bonusPosDirection = (asteroidPos - _meteoritesTarget.transform.position).normalized;
                     Vector3 bonusRotation = asteroidRot + new Vector3(0, 0, 90);
                     var bonus = GameObject.Instantiate(_asteroidsDictionary[asteroidView]._bonus,
-                        asteroidPos + bonusPosDirection * _asteroidsDictionary[asteroidView]._bonusHeightFromPlanet, Quaternion.Euler(bonusRotation));
-                    _bonusCollisionController.AddBonusToHandler(bonus);
+                        asteroidPos + bonusPosDirection * _asteroidsDictionary[asteroidView]._bonusHeightFromPlanet, Quaternion.Euler(bonusRotation)); 
+                    _bonusesHandler.AddBonusToHandler(bonus.GetComponent<BonusView>());
                     bonus.transform.SetParent(_bonusParent);
-                    _bonusesAnimationController.AddToBonusAnimationController(bonus.GetComponent<BonusView>());
+                    
                 }
 
                 asteroidView.OnCollisionHappened -= HandleCollision;

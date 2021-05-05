@@ -20,7 +20,7 @@ namespace Controllers
         private float _spawnRadius;
 
 
-        public AsteroidsController(Transform meteoritesTarget, float spawnRadius, BonusCollisionController bonusCollisionController, BonusesAnimationController bonusesAnimationController)
+        public AsteroidsController(Transform meteoritesTarget, float spawnRadius, BonusesHandler bonusHandler, BonusesAnimationController bonusesAnimationController)
         {
             _listOfAsteroidTypes = Resources.LoadAll<AsteroidModelSO>("").ToList();
             _meteoritesTarget = meteoritesTarget;
@@ -28,7 +28,7 @@ namespace Controllers
             _asteroidsSpawner = new AsteroidsSpawner();
             _listOfAsteroidsRbSpeed = new Dictionary<Rigidbody2D, float>();
             _spawnerGO = GameObject.FindObjectOfType<SpawnerGO>().GetComponent<Transform>();
-            _asteroidsCollisionController = new AsteroidsCollisionController(_listOfAsteroidsRbSpeed, _spawnerGO, bonusCollisionController, bonusesAnimationController, _meteoritesTarget);
+            _asteroidsCollisionController = new AsteroidsCollisionController(_listOfAsteroidsRbSpeed, _spawnerGO, bonusHandler, _meteoritesTarget);
             _listOfAsteroids = new List<GameObject>();
         }
         

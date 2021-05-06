@@ -10,13 +10,13 @@ namespace Controllers
 {
     public class BonusCollectedAnimationController: IBonusHandler, IDisposable
     {
-        private Dictionary<BonusTypes, IBonusDisplayView> _bonusDisplayViews;
+        private Dictionary<BonusTypes, BonusDisplayView> _bonusDisplayViews;
         private List<BonusView> _bonusViews;
         private AnimationController _animationController;
 
         public BonusCollectedAnimationController(AnimationController animationController)
         {
-            _bonusDisplayViews = new Dictionary<BonusTypes, IBonusDisplayView>()
+            _bonusDisplayViews = new Dictionary<BonusTypes, BonusDisplayView>()
             {
                 {BonusTypes.Healing, GameObject.FindObjectOfType<HealthBonusDisplayView>()},
                 {BonusTypes.Speed, GameObject.FindObjectOfType<SpeedBonusDisplayView>()},

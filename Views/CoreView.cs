@@ -4,6 +4,5 @@ namespace ExtinctionRunner.Views
 {
     public class CoreView: MonoBehaviour
     {
-        
     }
 }

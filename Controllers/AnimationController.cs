@@ -31,7 +31,7 @@ namespace ExtinctionRunner
                 }
                 else if (Counter > Sprites.Count)
                 {
-                    Counter = Sprites.Count - 1;
+                    Counter = 0;
                     Sleeps = true;
                 }
             }

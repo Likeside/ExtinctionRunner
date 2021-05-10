@@ -63,6 +63,10 @@ namespace ExtinctionRunner
             HpModel hpModel = new HpModel(_playerMaxHp);
             PlayerHpController playerHpController = new PlayerHpController(_playerView, hpModel);
 
+
+  
+            
+            
             ScoreManager.InitializeScore();
             BonusesModel bonusesModel = new BonusesModel(playerHpController, _healingHealHp, coreController, _speedBonus, _timerForSpeedBonus, _listOfExecutables);
             
@@ -75,6 +79,9 @@ namespace ExtinctionRunner
             _listOfExecutables.Add(asteroidsController);
             _listOfFixedExecutables.Add(asteroidsController);
             _listOfStartables.Add(asteroidsController);
+            
+            GameOverController gameOverController =
+                new GameOverController(playerController, playerHpController, inputController, asteroidsController);
 
             
             foreach (var startable in _listOfStartables)

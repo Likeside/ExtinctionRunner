@@ -18,6 +18,7 @@ namespace Controllers
         private Dictionary<Rigidbody2D, float> _listOfAsteroidsRbSpeed;
         private Transform _meteoritesTarget;
         private float _spawnRadius;
+        public bool isSpawning = true;
 
 
         public AsteroidsController(Transform meteoritesTarget, float spawnRadius, BonusesHandler bonusHandler, BonusesAnimationController bonusesAnimationController)
@@ -56,16 +57,20 @@ namespace Controllers
 
         private void SpawnAsteroids()
         {
-            foreach (var asteroidModelSo in _listOfAsteroidTypes)
+            if (isSpawning)
             {
-                asteroidModelSo._spawnRate -= 1 * Time.deltaTime;
-                if (asteroidModelSo._spawnRate < 0)
+                foreach (var asteroidModelSo in _listOfAsteroidTypes)
                 {
-                    asteroidModelSo._spawnRate = asteroidModelSo._defaultSpawnRate;
-                    var asteroid = _asteroidsSpawner.SpawnSingleAsteroid(asteroidModelSo, _spawnerGO, _spawnRadius, _meteoritesTarget);
-                    _listOfAsteroids.Add(asteroid);
-                    _listOfAsteroidsRbSpeed.Add(asteroid.GetComponent<Rigidbody2D>(), asteroidModelSo._speed);
-                    _asteroidsCollisionController.AddAsteroidToHandler(asteroid, asteroidModelSo);
+                    asteroidModelSo._spawnRate -= 1 * Time.deltaTime;
+                    if (asteroidModelSo._spawnRate < 0)
+                    {
+                        asteroidModelSo._spawnRate = asteroidModelSo._defaultSpawnRate;
+                        var asteroid = _asteroidsSpawner.SpawnSingleAsteroid(asteroidModelSo, _spawnerGO, _spawnRadius,
+                            _meteoritesTarget);
+                        _listOfAsteroids.Add(asteroid);
+                        _listOfAsteroidsRbSpeed.Add(asteroid.GetComponent<Rigidbody2D>(), asteroidModelSo._speed);
+                        _asteroidsCollisionController.AddAsteroidToHandler(asteroid, asteroidModelSo);
+                    }
                 }
             }
         }

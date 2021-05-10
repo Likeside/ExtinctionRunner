@@ -20,6 +20,9 @@ namespace ExtinctionRunner
         private Vector3 _scaleVector1;
         private Vector3 _scaleVector2;
 
+        public delegate void PlayerSunk();
+
+        public event PlayerSunk OnPlayerSunk;
 
         public PlayerController(PlayerView playerView, AnimationController animationController, InputController inputController, LayerMask groundCheckLayerMask, LayerMask waterCheckLayerMask, float jumpForce)
         {
@@ -58,7 +61,7 @@ namespace ExtinctionRunner
             }
             else
             {
-                _animationController.StartAnimation(_spriteRenderer, Track.Jump, false, 30);
+             //jumpAnimation here?   
             }
 
             if (axis > 0)
@@ -73,6 +76,7 @@ namespace ExtinctionRunner
 
             if (_playerWaterCheckController.IsGrounded())
             {
+                OnPlayerSunk?.Invoke();
                 Debug.Log("Sunk");
             }
         }
@@ -82,6 +86,8 @@ namespace ExtinctionRunner
             if (_playerGroundCheckController.IsGrounded())
             {
                _rigidbody2D.AddForce(Vector2.up * _jumpForce);
+               _animationController.StartAnimation(_spriteRenderer, Track.Jump, false, 30);
+
             }
         } 
         

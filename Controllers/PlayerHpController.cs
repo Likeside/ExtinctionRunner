@@ -10,6 +10,10 @@ namespace Controllers
         private HpModel _hpModel;
         private HealthBarSliderView _healthBarSliderView;
 
+        public delegate void PlayerDead();
+
+        public event PlayerDead OnPlayerDead;
+
         public PlayerHpController(PlayerView playerView, HpModel hpModel)
         {
             _playerView = playerView;
@@ -24,6 +28,11 @@ namespace Controllers
             _hpModel.CurrentHealthPoints -= damage;
             _healthBarSliderView.slider.value = _hpModel.CurrentHealthPoints;
             Debug.Log(_hpModel.CurrentHealthPoints);
+
+            if (_hpModel.CurrentHealthPoints <= 0)
+            {
+                OnPlayerDead?.Invoke();
+            }
         }
 
         public void ApplyHealing(float hp)

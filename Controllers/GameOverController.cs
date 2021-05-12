@@ -1,6 +1,7 @@
 using System;
 using ExtinctionRunner;
 using ExtinctionRunner.Views;
+using SavingGame;
 using UnityEngine;
 
 namespace Controllers
@@ -34,6 +35,10 @@ namespace Controllers
             _asteroidsController.isSpawning = false;
             _gameOverPanelView.gameObject.SetActive(true);
             _gameOverPanelView._scoreAmount.text = ScoreManager.CurrentScore.ToString();
+            HighScoreManager.SetHighScore(ScoreManager.CurrentScore);
+            
+            Debug.Log(HighScoreManager.highScore[0]);
+            SaveSystem.SaveGame();
 
             _playerController.OnPlayerSunk -= GameOver;
             _playerHpController.OnPlayerDead -= GameOver;

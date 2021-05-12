@@ -66,8 +66,10 @@ namespace ExtinctionRunner
 
   
             
+            //HighScoreManager.InitializeHighScore();
+            //ScoreManager.InitializeScore();
             
-            ScoreManager.InitializeScore();
+            
             BonusesModel bonusesModel = new BonusesModel(playerHpController, _healingHealHp, coreController, _speedBonus, _timerForSpeedBonus, _listOfExecutables);
             
             BonusCollisionController bonusCollisionController = new BonusCollisionController(bonusesModel);

@@ -29,7 +29,6 @@ namespace SavingGame
                 FileStream stream = new FileStream(_path, FileMode.Open);
                 SavedData savedData = formatter.Deserialize(stream) as SavedData;
                 stream.Close();
-                Debug.Log(savedData.score);
                 return savedData;
             }
             else

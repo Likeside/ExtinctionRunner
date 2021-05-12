@@ -21,6 +21,7 @@ namespace ExtinctionRunner
         public GameObject _asteroid;
         public GameObject _bonus;
         public float _bonusHeightFromPlanet;
+        public GameObject _particleSystem;
     }
 
 }

@@ -1,4 +1,5 @@
 using System;
+using Controllers;
 using UnityEngine;
 
 namespace ExtinctionRunner.Views
@@ -15,6 +16,7 @@ namespace ExtinctionRunner.Views
 
         public void DestroyThis()
         {
+            
             Destroy(this.gameObject);
         }
     }

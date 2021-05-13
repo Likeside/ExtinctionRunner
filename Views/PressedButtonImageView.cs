@@ -10,6 +10,6 @@ public class PressedButtonImageView : MonoBehaviour
 
  public void SetImage(int index)
   {
-    _image.sprite = _sprites[index];
+      _image.sprite = _sprites[index];
   }
 }

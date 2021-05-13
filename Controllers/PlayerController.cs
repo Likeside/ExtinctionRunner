@@ -1,4 +1,5 @@
 using System;
+using Controllers;
 using ExtinctionRunner.Interfaces;
 using ExtinctionRunner.Views;
 using PlatformerMVC;
@@ -8,7 +9,7 @@ namespace ExtinctionRunner
 {
     public class PlayerController: IExecutable, IDisposable
     {
-        private PlayerView _playerView;
+        public PlayerView _playerView;
         private Transform _playerTransform;
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
@@ -52,10 +53,12 @@ namespace ExtinctionRunner
             {
                 if (axis != 0)
                 {
+                    AudioController.PlayRunSound(_playerView.runAudioSource);
                     _animationController.StartAnimation(_spriteRenderer, Track.Walk, true, 30);
                 }
                 else
                 {
+                    AudioController.StopRunSound(_playerView.runAudioSource);
                     _animationController.StartAnimation(_spriteRenderer, Track.Idle, true, 30);
                 }
             }
@@ -76,8 +79,8 @@ namespace ExtinctionRunner
 
             if (_playerWaterCheckController.IsGrounded())
             {
+                AudioController.PlaySunkSound();
                 OnPlayerSunk?.Invoke();
-                Debug.Log("Sunk");
             }
         }
 
@@ -86,6 +89,7 @@ namespace ExtinctionRunner
             if (_playerGroundCheckController.IsGrounded())
             {
                _rigidbody2D.AddForce(Vector2.up * _jumpForce);
+               AudioController.PlayJumpSound(_playerView.audioSource);
                _animationController.StartAnimation(_spriteRenderer, Track.Jump, false, 30);
 
             }

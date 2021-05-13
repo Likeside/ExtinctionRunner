@@ -24,14 +24,11 @@ namespace Controllers
         }
 
         void HandleCollision(BonusView bonusView, GameObject other)
-        {
-          //  bool isPlayer = other.TryGetComponent(out PlayerView playerView);
-           // if (isPlayer)
-          //  {
+        { 
+            AudioController.PlayBonusSound();
                 bonusView.ApplyEffect(_bonusEffects[bonusView.bonusType]);
                 bonusView.OnCollisionHappened -= HandleCollision;
                 bonusView.DestroyThis();
-           // }
         }
 
       public void AddBonusToHandler(BonusView bonusView)

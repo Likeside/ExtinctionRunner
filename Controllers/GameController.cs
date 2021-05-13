@@ -42,6 +42,8 @@ namespace ExtinctionRunner
 
         private void Start()
         {
+            AudioController.InitializeAudioController();
+            
             InputController inputController = FindObjectOfType<UiInputView>()._inputController;
             _listOfExecutables.Add(inputController);
             _listOfFixedExecutables.Add(inputController);
@@ -63,11 +65,7 @@ namespace ExtinctionRunner
             HpModel hpModel = new HpModel(_playerMaxHp);
             PlayerHpController playerHpController = new PlayerHpController(_playerView, hpModel);
 
-
-  
-            
-            //HighScoreManager.InitializeHighScore();
-            //ScoreManager.InitializeScore();
+        
             
             
             BonusesModel bonusesModel = new BonusesModel(playerHpController, _healingHealHp, coreController, _speedBonus, _timerForSpeedBonus, _listOfExecutables);
@@ -77,7 +75,7 @@ namespace ExtinctionRunner
             BonusesHandler bonusesHandler = new BonusesHandler(bonusCollisionController, bonusesAnimationController,
                 bonusCollectedAnimationController);
             
-            AsteroidsController asteroidsController = new AsteroidsController(_meteoritesTarget, _asteroidsSpawnRadius, bonusesHandler, bonusesAnimationController);
+            AsteroidsController asteroidsController = new AsteroidsController(_meteoritesTarget, _asteroidsSpawnRadius, bonusesHandler);
             _listOfExecutables.Add(asteroidsController);
             _listOfFixedExecutables.Add(asteroidsController);
             _listOfStartables.Add(asteroidsController);

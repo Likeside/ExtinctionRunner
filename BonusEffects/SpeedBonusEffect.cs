@@ -61,7 +61,6 @@ namespace BonusEffects
             {
                 _timer -= Time.deltaTime * 1;
                 _text.text = _timer.ToString("n2");
-                Debug.Log(_timer);
             }
 
             if (_timer < 0)

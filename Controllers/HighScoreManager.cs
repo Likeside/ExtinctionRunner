@@ -12,7 +12,7 @@ namespace Controllers
         {
             for (int i = 0; i < highScore.Count; i++)
             {
-                if (score > i)
+                if (score > highScore[i])
                 {
                     highScore[highScore.Count -1] = score;
                     SortList();

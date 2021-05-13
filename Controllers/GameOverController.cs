@@ -31,14 +31,14 @@ namespace Controllers
 
         private void GameOver()
         {
+            AudioController.StopRunSound(_playerController._playerView.runAudioSource);
             _inputController.movementEnabled = false;
             _asteroidsController.isSpawning = false;
             _gameOverPanelView.gameObject.SetActive(true);
             _gameOverPanelView._scoreAmount.text = ScoreManager.CurrentScore.ToString();
             HighScoreManager.SetHighScore(ScoreManager.CurrentScore);
-            
-            Debug.Log(HighScoreManager.highScore[0]);
             SaveSystem.SaveGame();
+            ScoreManager.InitializeScore();
 
             _playerController.OnPlayerSunk -= GameOver;
             _playerHpController.OnPlayerDead -= GameOver;

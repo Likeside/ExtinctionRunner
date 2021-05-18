@@ -43,6 +43,7 @@ namespace ExtinctionRunner
         private void Start()
         {
             AudioController.InitializeAudioController();
+            AdsManager.InitializeAdsManager();
             
             InputController inputController = FindObjectOfType<UiInputView>()._inputController;
             _listOfExecutables.Add(inputController);

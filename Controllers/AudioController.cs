@@ -13,6 +13,7 @@ namespace Controllers
         private static SoundsModel _soundsModel;
         private static AudioSource _globalAudioSource;
         private static bool isRunSoundPlaying = false;
+     
 
         public static void InitializeAudioController()
         {
@@ -44,12 +45,18 @@ namespace Controllers
 
         public static void PlayJumpSound(AudioSource audioSource)
         {
-            audioSource.PlayOneShot(_soundsModel.jump);
+            if (audioSource.isPlaying) {return;}
+            else
+            {
+                audioSource.PlayOneShot(_soundsModel.jump);  
+            }
+            
+            
         }
 
         public static void PlaySunkSound()
         {
-           _globalAudioSource.PlayOneShot(_soundsModel.sunk);
+            _globalAudioSource.PlayOneShot(_soundsModel.sunk);
         }
 
         public static void PlayDeadSound()
@@ -66,7 +73,6 @@ namespace Controllers
         public static void PlayClickSound()
         {
             _globalAudioSource.PlayOneShot(_soundsModel.menuItemClick);
-            Debug.Log("ClickSoundPlayed");
         }
 
    

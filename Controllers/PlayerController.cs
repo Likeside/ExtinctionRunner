@@ -65,6 +65,7 @@ namespace ExtinctionRunner
             else
             {
              //jumpAnimation here?   
+             AudioController.StopRunSound(_playerView.runAudioSource);
             }
 
             if (axis > 0)
@@ -88,10 +89,10 @@ namespace ExtinctionRunner
         { 
             if (_playerGroundCheckController.IsGrounded())
             {
+                AudioController.PlayJumpSound(_playerView.audioSource);
                _rigidbody2D.AddForce(Vector2.up * _jumpForce);
-               AudioController.PlayJumpSound(_playerView.audioSource);
                _animationController.StartAnimation(_spriteRenderer, Track.Jump, false, 30);
-
+               
             }
         } 
         

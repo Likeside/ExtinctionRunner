@@ -13,6 +13,7 @@ namespace Controllers
         private PlayerHpController _playerHpController;
         private AsteroidsController _asteroidsController;
         private GameOverPanelView _gameOverPanelView;
+        private static int _numberOfTimesDied = 0;
 
         public GameOverController(PlayerController playerController, PlayerHpController playerHpController, InputController inputController, AsteroidsController asteroidsController)
         {
@@ -31,6 +32,7 @@ namespace Controllers
 
         private void GameOver()
         {
+            _numberOfTimesDied += 1;
             AudioController.StopRunSound(_playerController._playerView.runAudioSource);
             _inputController.movementEnabled = false;
             _asteroidsController.isSpawning = false;
@@ -39,7 +41,10 @@ namespace Controllers
             HighScoreManager.SetHighScore(ScoreManager.CurrentScore);
             SaveSystem.SaveGame();
             ScoreManager.InitializeScore();
-
+            if (_numberOfTimesDied % 3 == 0)
+            {
+                AdsManager.ShowInterstitialAd();
+            }
             _playerController.OnPlayerSunk -= GameOver;
             _playerHpController.OnPlayerDead -= GameOver;
 

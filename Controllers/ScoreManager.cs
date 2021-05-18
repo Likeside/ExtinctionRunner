@@ -16,6 +16,12 @@ namespace Controllers
         public static int AddScore(int score)
         {
             CurrentScore += score;
+
+            if (CurrentScore % 2 == 0)
+            {
+                AdsManager.ShowBannerAd();
+            }
+            
             return CurrentScore;
         }
 

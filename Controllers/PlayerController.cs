@@ -54,12 +54,12 @@ namespace ExtinctionRunner
                 if (axis != 0)
                 {
                     AudioController.PlayRunSound(_playerView.runAudioSource);
-                    _animationController.StartAnimation(_spriteRenderer, Track.Walk, true, 30);
+                    _animationController.StartAnimation(_spriteRenderer, PlayerSpriteManager.walk, true, 30);
                 }
                 else
                 {
                     AudioController.StopRunSound(_playerView.runAudioSource);
-                    _animationController.StartAnimation(_spriteRenderer, Track.Idle, true, 30);
+                    _animationController.StartAnimation(_spriteRenderer, PlayerSpriteManager.idle, true, 30);
                 }
             }
             else
@@ -91,7 +91,7 @@ namespace ExtinctionRunner
             {
                 AudioController.PlayJumpSound(_playerView.audioSource);
                _rigidbody2D.AddForce(Vector2.up * _jumpForce);
-               _animationController.StartAnimation(_spriteRenderer, Track.Jump, false, 30);
+               _animationController.StartAnimation(_spriteRenderer, PlayerSpriteManager.jump, false, 30);
                
             }
         } 

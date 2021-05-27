@@ -32,7 +32,6 @@ namespace Controllers
 
         private void GameOver()
         {
-            PlayerPrefs.DeleteAll();
             _numberOfTimesDied += 1;
             AudioController.StopRunSound(_playerController._playerView.runAudioSource);
             _inputController.movementEnabled = false;
@@ -42,7 +41,7 @@ namespace Controllers
             HighScoreManager.SetHighScore(ScoreManager.CurrentScore);
             SaveSystem.SaveGame();
             ScoreManager.InitializeScore();
-            if (_numberOfTimesDied % 3 == 0)
+            if (_numberOfTimesDied % 4 == 0)
             {
                 AdsManager.ShowInterstitialAd();
             }

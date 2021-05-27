@@ -12,9 +12,11 @@ namespace Views
         [SerializeField] private SetSkinActiveButton _button;
         [SerializeField] private GameObject _priceDisplay;
         [SerializeField] private TextMeshProUGUI _priceText;
+        [SerializeField] private GameObject _notEnoughVolcanoesPanel;
 
         private void Start()
         {
+            _notEnoughVolcanoesPanel.SetActive(false);
             if (PlayerPrefs.GetInt("PredatorBought") == 1)
             {
                 this.gameObject.SetActive(false);
@@ -38,6 +40,10 @@ namespace Views
              _button.gameObject.SetActive(true);
              this.gameObject.SetActive(false);
              _priceDisplay.SetActive(false);
+         }
+         else
+         {
+             _notEnoughVolcanoesPanel.SetActive(true);
          }
         }
     }

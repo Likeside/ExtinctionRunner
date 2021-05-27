@@ -17,9 +17,14 @@ namespace Controllers
         {
             CurrentScore += score;
 
-            if (CurrentScore % 2 == 0)
+            if (CurrentScore%10  == 0)
             {
                 AdsManager.ShowBannerAd();
+            }
+
+            if (CurrentScore % 10 == 2)
+            {
+                AdsManager.CloseBannerAd();
             }
             
             return CurrentScore;

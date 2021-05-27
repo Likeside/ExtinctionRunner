@@ -9,6 +9,7 @@ namespace Views
     {
         [SerializeField] private int _position;
         [SerializeField] private TextMeshProUGUI _text;
+        
 
         private void Awake()
         {

@@ -32,6 +32,7 @@ namespace Controllers
 
         private void GameOver()
         {
+            PlayerPrefs.DeleteAll();
             _numberOfTimesDied += 1;
             AudioController.StopRunSound(_playerController._playerView.runAudioSource);
             _inputController.movementEnabled = false;

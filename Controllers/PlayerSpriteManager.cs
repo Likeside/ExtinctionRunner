@@ -8,7 +8,12 @@ namespace Controllers
         public static Track idle;
         public static Track jump;
         public static Track walk;
-        private static int _predatorSkinPrice = 1000;
+        public static bool predatorActive = false;
+
+        public static int PredatorSkinPrice
+        {
+            get => 1000;
+        } 
 
         public static void Initialize()
         {
@@ -32,21 +37,23 @@ namespace Controllers
             if (PlayerPrefs.GetInt("PredatorBought") == 1)
             {
                 PlayerPrefs.SetInt("PredatorActive", 1);
+                predatorActive = true;
             }
         }
 
         public static void SetHerbiActive()
         {
             PlayerPrefs.SetInt("PredatorActive", 0);
+            predatorActive = false;
         }
 
         public static bool BuyPredatorSkin()
         {
             bool succes = false;
-            if (ScoreManager.TotalScore >= _predatorSkinPrice)
+            if (ScoreManager.TotalScore >= PredatorSkinPrice)
             {
                 PlayerPrefs.SetInt("PredatorBought", 1);
-                ScoreManager.RemoveScore(_predatorSkinPrice);
+                ScoreManager.RemoveScore(PredatorSkinPrice);
                 succes = true;
             }
 

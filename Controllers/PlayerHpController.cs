@@ -27,7 +27,6 @@ namespace Controllers
         {
             _hpModel.CurrentHealthPoints -= damage;
             _healthBarSliderView.slider.value = _hpModel.CurrentHealthPoints;
-            Debug.Log(_hpModel.CurrentHealthPoints);
 
             if (_hpModel.CurrentHealthPoints <= 0)
             {
@@ -37,11 +36,14 @@ namespace Controllers
 
         public void ApplyHealing(float hp)
         {
-            if (_hpModel.CurrentHealthPoints <= 100)
+            if (_hpModel.CurrentHealthPoints < 100)
             {
                 _hpModel.CurrentHealthPoints += hp;
+                if (_hpModel.CurrentHealthPoints > 100)
+                {
+                    _hpModel.CurrentHealthPoints = 100;
+                }
                 _healthBarSliderView.slider.value = _hpModel.CurrentHealthPoints;
-                Debug.Log(_hpModel.CurrentHealthPoints);
             }
         }
         

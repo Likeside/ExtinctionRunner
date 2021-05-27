@@ -7,21 +7,21 @@ namespace Controllers
 {
     public class ShopController: MonoBehaviour
     {
-        [SerializeField] private Image _playerImage;
-        private AnimationController _animationController;
+        [SerializeField] public Image playerImage;
+        public AnimationController animationController;
         
         
        private void Start()
        {
            AnimationModelSO config = Resources.Load<AnimationModelSO>("DinoAnimation");
-           _animationController = new AnimationController(config);
-           _animationController.StartAnimation(_playerImage, Track.WalkPredator, true, 30);
+           animationController = new AnimationController(config);
+           animationController.StartAnimation(playerImage, Track.WalkPredator, true, 30);
        }
 
 
        private void Update()
        {
-           _animationController.Execute();
+           animationController.Execute();
        }
     }
 }

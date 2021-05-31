@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using ExtinctionRunner;
 using ExtinctionRunner.BonusEffects;
 using ExtinctionRunner.Interfaces;
+using ExtinctionRunner.Models;
 using ExtinctionRunner.Views;
 using UnityEngine;
 
-namespace Controllers
+namespace ExtinctionRunner.Controllers
 {
     public class BonusesAnimationController: IExecutable, IDisposable, IBonusHandler
     {

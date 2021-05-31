@@ -1,4 +1,4 @@
-namespace ExtinctionRunner
+namespace ExtinctionRunner.Models
 {
     public class HpModel
     {

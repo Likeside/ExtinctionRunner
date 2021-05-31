@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using ExtinctionRunner.Interfaces;
+using ExtinctionRunner.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ExtinctionRunner
+namespace ExtinctionRunner.Controllers
 {
     public class AnimationController : IDisposable, IExecutable
     {

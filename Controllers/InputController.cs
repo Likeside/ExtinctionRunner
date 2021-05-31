@@ -1,7 +1,7 @@
 using ExtinctionRunner.Interfaces;
 using UnityEngine;
 
-namespace ExtinctionRunner
+namespace ExtinctionRunner.Controllers
 {
     public class InputController: IExecutable, IFixedExecutable
     {
@@ -21,12 +21,11 @@ namespace ExtinctionRunner
         {
             if (movementEnabled)
             {
-                //horizontalAxis = Input.GetAxis("Horizontal");
                 OnArrowPressed?.Invoke(horizontalAxis);
 
                 jumpPressedTimer -= Time.deltaTime * 1;
                 if (
-                    jumpPressed) //Linux machine returns "O" when spacebar is pressed, need to fix in preferences before build
+                    jumpPressed) 
                 {
                     jumpPressedTimer = jumpPressedTimerDefault;
                 }

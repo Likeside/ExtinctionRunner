@@ -1,4 +1,4 @@
-using Controllers;
+using ExtinctionRunner.Controllers;
 using TMPro;
 using UnityEngine;
 

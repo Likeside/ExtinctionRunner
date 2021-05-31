@@ -1,5 +1,5 @@
-using Controllers;
-using SavingGame;
+using ExtinctionRunner.Controllers;
+using ExtinctionRunner.SavingGame;
 using TMPro;
 using UnityEngine;
 
@@ -33,7 +33,6 @@ namespace ExtinctionRunner.Views
          bool succes = PlayerSpriteManager.BuyPredatorSkin();
          if (succes)
          {
-             //обновить отобраджение валюты у игрока, сделать активной кнопку с выбором скина
              _text.text = ScoreManager.TotalScore.ToString();
              SaveSystem.SaveGame();
              _button.gameObject.SetActive(true);

@@ -1,7 +1,7 @@
-using ExtinctionRunner;
+using ExtinctionRunner.Models;
 using UnityEngine;
 
-namespace Controllers
+namespace ExtinctionRunner.Controllers
 {
     public static class PlayerSpriteManager
     {

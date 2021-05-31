@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ExtinctionRunner.Controllers;
+using UnityEngine;
 
 namespace ExtinctionRunner.Views
 {

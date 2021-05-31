@@ -1,13 +1,12 @@
 using System.Collections.Generic;
-using SavingGame;
+using ExtinctionRunner.SavingGame;
 
-namespace Controllers
+namespace ExtinctionRunner.Controllers
 {
     public static class HighScoreManager
     {
         public static List<int> highScore = new List<int>(){0, 0, 0, 0, 0};
-
-
+        
         public static List<int> SetHighScore(int score)
         {
             for (int i = 0; i < highScore.Count; i++)
@@ -38,8 +37,7 @@ namespace Controllers
                 }
             }
         }
-
-
+        
         public static List<int> InitializeHighScore()
         { 
             highScore[0] = SaveSystem.LoadGame().first;

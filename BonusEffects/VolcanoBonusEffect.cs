@@ -1,4 +1,4 @@
-using Controllers;
+using ExtinctionRunner.Controllers;
 using ExtinctionRunner.Interfaces;
 using ExtinctionRunner.Views;
 using TMPro;

@@ -1,59 +1,56 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Advertisements;
 
-public static class AdsManager
+namespace ExtinctionRunner.Controllers
 {
-    private static string gameId = "4133487";
-    private static bool isTestMode = false;
-    private static string bannerId = "Banner_Android";
-    //  private static CloseBannerView _closeBannerView;
-    public static void InitializeAdsManager()
+    public static class AdsManager
     {
-        Advertisement.Initialize(gameId, isTestMode);
-        Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
-       // _closeBannerView = GameObject.FindObjectOfType<CloseBannerView>();
-       // _closeBannerView.gameObject.SetActive(false);
-    }
+        private static string gameId = "4133487";
+        private static bool isTestMode = false;
+        private static string bannerId = "Banner_Android";
 
-    public static void ShowInterstitialAd()
-    {
-        if (Advertisement.IsReady() && PlayerPrefs.GetInt("AdsDisabled") != 1)
+        public static void InitializeAdsManager()
         {
-            Advertisement.Show();
+            Advertisement.Initialize(gameId, isTestMode);
+            Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
         }
-    }
 
-    public static void ShowBannerAd()
-    {
-        if (Advertisement.IsReady(bannerId) && PlayerPrefs.GetInt("AdsDisabled") != 1)
+        public static void ShowInterstitialAd()
         {
-           Advertisement.Banner.Show(bannerId);
-         //_closeBannerView.gameObject.SetActive(true);
+            if (Advertisement.IsReady() && PlayerPrefs.GetInt("AdsDisabled") != 1)
+            {
+                Advertisement.Show();
+            }
         }
-    }
 
-    public static void CloseBannerAd()
-    {
-       // _closeBannerView.gameObject.SetActive(false);
-        Advertisement.Banner.Hide();
-    }
-
-    public static void DisableAds()
-    {
-        PlayerPrefs.SetInt("AdsDisabled", 1);
-    }
-
-    public static bool CheckIfAdsDisabled()
-    {
-        if (PlayerPrefs.GetInt("AdsDisabled") == 1)
+        public static void ShowBannerAd()
         {
-            return true;
+            if (Advertisement.IsReady(bannerId) && PlayerPrefs.GetInt("AdsDisabled") != 1)
+            {
+                Advertisement.Banner.Show(bannerId);
+            }
         }
-        else
+
+        public static void CloseBannerAd()
         {
-            return false;
+            Advertisement.Banner.Hide();
+        }
+
+        public static void DisableAds()
+        {
+            PlayerPrefs.SetInt("AdsDisabled", 1);
+        }
+
+        public static bool CheckIfAdsDisabled()
+        {
+            if (PlayerPrefs.GetInt("AdsDisabled") == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

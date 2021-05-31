@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ExtinctionRunner
+namespace ExtinctionRunner.Utilities
 {
     static public class Utilities
     {

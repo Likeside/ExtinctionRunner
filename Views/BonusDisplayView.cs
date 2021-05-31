@@ -1,3 +1,4 @@
+using ExtinctionRunner.Models;
 using UnityEngine;
 using UnityEngine.UI;
 

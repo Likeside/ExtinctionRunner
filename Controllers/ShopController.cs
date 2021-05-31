@@ -1,9 +1,8 @@
-using System;
-using ExtinctionRunner;
+using ExtinctionRunner.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Controllers
+namespace ExtinctionRunner.Controllers
 {
     public class ShopController: MonoBehaviour
     {

@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using Controllers;
+using ExtinctionRunner.Controllers;
 using ExtinctionRunner.Interfaces;
-using UnityEngine;
 
-namespace ExtinctionRunner
+namespace ExtinctionRunner.Models
 {
     public class BonusesModel
     {
@@ -22,7 +21,7 @@ namespace ExtinctionRunner
 
 
 
-        public BonusesModel(PlayerHpController playerHpController, float healHp, CoreController coreController, float speedBonus, float timer, List<IExecutable> listOfExecutables) //добавить остальные бонусы
+        public BonusesModel(PlayerHpController playerHpController, float healHp, CoreController coreController, float speedBonus, float timer, List<IExecutable> listOfExecutables)
         {
             //Healing bonus 
             PlayerHpController = playerHpController;

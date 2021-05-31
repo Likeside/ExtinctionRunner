@@ -1,9 +1,8 @@
 using System;
 using ExtinctionRunner.Views;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
-namespace ExtinctionRunner
+namespace ExtinctionRunner.Controllers
 {
     public class CoreController: IDisposable
     {
@@ -17,11 +16,9 @@ namespace ExtinctionRunner
             _coreView = coreView;
             _inputController = inputController;
             _rotationSpeed = rotationSpeed;
-
             _inputController.OnArrowPressed += Rotate;
         }
-
-       private void Rotate(float axis)
+        private void Rotate(float axis)
         {
             if (axis > 0)
             {
@@ -33,8 +30,7 @@ namespace ExtinctionRunner
                _coreView.transform.Rotate(_rotationAxis, -(_rotationSpeed*Time.deltaTime));
             }
         }
-
-        public void Dispose()
+       public void Dispose()
         {
             _inputController.OnArrowPressed -= Rotate;
         }

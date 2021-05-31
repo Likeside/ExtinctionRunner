@@ -1,18 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
-using ExtinctionRunner;
 using ExtinctionRunner.Interfaces;
+using ExtinctionRunner.Models;
 using ExtinctionRunner.Views;
 using UnityEngine;
 
-namespace Controllers
+namespace ExtinctionRunner.Controllers
 {
-    public class AsteroidsController: IExecutable, IStartable, IFixedExecutable
+    public class AsteroidsController: IExecutable, IFixedExecutable
     {
        
         private AsteroidsSpawner _asteroidsSpawner;
         private AsteroidsCollisionController _asteroidsCollisionController;
-       
         private Transform _spawnerGO;
         private List<AsteroidModelSO> _listOfAsteroidTypes;
         private List<GameObject> _listOfAsteroids;
@@ -35,28 +34,14 @@ namespace Controllers
             _listOfAsteroids = new List<GameObject>();
         }
         
-        
         public void Execute()
         {
             SpawnAsteroids();
         }
-
         public void IFixedExecute()
         {
             MoveAsteroids();
         }
-        public void OnStart()
-        {
-            /*
-            //спавнит сразу несколько астероидов, добавляет их в список как и при спавне одного
-           var asteroids = _asteroidsSpawner.SpawnAllAsteroids(_spawnersGoTransforms);
-           foreach (var asteroid in asteroids)
-           {
-               _listOfAsteroids.Add(asteroid);
-           }
-           */
-        }
-
         private void SpawnAsteroids()
         {
             if (isSpawning)

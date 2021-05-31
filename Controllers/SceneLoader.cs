@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.SceneManagement;
 
-namespace Controllers
+namespace ExtinctionRunner.Controllers
 {
     public static class SceneLoader
     {

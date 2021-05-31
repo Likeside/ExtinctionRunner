@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using ExtinctionRunner;
+using ExtinctionRunner.Models;
 using ExtinctionRunner.Views;
 using UnityEngine;
 
-namespace Controllers
+namespace ExtinctionRunner.Controllers
 {
     public class AsteroidsCollisionController
     {
@@ -54,9 +54,6 @@ namespace Controllers
                 asteroidView.DestroyThis();
             }
         }
-
-
-        //AsteroidController adds asteroids to CollisionController, CollisionController subscribes to event in asteroidView.
         public void AddAsteroidToHandler(GameObject asteroid, AsteroidModelSO asteroidModelSo)
         {
             AsteroidView asteroidView = asteroid.GetComponent<AsteroidView>();

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ExtinctionRunner.Controllers;
 using ExtinctionRunner.Interfaces;
 using ExtinctionRunner.Views;
 using UnityEngine;

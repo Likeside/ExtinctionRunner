@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ExtinctionRunner
+namespace ExtinctionRunner.Models
 {
-   
-        public enum Track
+    public enum Track
         {
             Idle,
             Walk,

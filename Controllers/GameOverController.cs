@@ -1,10 +1,8 @@
-using System;
-using ExtinctionRunner;
+using ExtinctionRunner.SavingGame;
 using ExtinctionRunner.Views;
-using SavingGame;
 using UnityEngine;
 
-namespace Controllers
+namespace ExtinctionRunner.Controllers
 {
     public class GameOverController
     {

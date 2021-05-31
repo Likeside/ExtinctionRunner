@@ -1,16 +1,13 @@
 using ExtinctionRunner.Interfaces;
 using ExtinctionRunner.Views;
-using UnityEngine;
 
-namespace Controllers
+namespace ExtinctionRunner.Controllers
 {
     public class BonusesHandler: IBonusHandler
     {
         private BonusCollisionController _bonusCollisionController;
         private BonusesAnimationController _bonusesAnimationController;
         private BonusCollectedAnimationController _bonusCollectedAnimationController;
-       
-
         public BonusesHandler(BonusCollisionController bonusCollisionController, BonusesAnimationController bonusesAnimationController, BonusCollectedAnimationController bonusCollectedAnimationController)
         {
             _bonusCollisionController = bonusCollisionController;
@@ -18,7 +15,6 @@ namespace Controllers
             _bonusCollectedAnimationController = bonusCollectedAnimationController;
            
         }
-
         public void AddBonusToHandler(BonusView bonusView)
         {
             _bonusCollisionController.AddBonusToHandler(bonusView);
@@ -26,7 +22,5 @@ namespace Controllers
             _bonusCollectedAnimationController.AddBonusToHandler(bonusView);
      
         }
-        
-        
     }
 }

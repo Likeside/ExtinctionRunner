@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-using Controllers;
-using UnityEngine;
+using ExtinctionRunner.Controllers;
 
-namespace SavingGame
+namespace ExtinctionRunner.SavingGame
 {
     [System.Serializable]
     public class SavedData

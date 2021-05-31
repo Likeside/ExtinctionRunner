@@ -1,4 +1,5 @@
-using Controllers;
+using ExtinctionRunner.Controllers;
+using ExtinctionRunner.Models;
 using UnityEngine;
 
 namespace ExtinctionRunner.Views

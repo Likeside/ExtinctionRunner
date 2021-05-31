@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using System.Linq;
-using ExtinctionRunner;
+using ExtinctionRunner.Models;
 using UnityEngine;
 
-namespace Controllers
+namespace ExtinctionRunner.Controllers
 {
     public class AsteroidsSpawner
     {
@@ -28,7 +27,7 @@ namespace Controllers
             for (int i = 0; i < amountOfAsteroids; i++)
             {
                 var asteroid = SpawnSingleAsteroid(asteroidModelSo, spawnersGo, spawnRadius, meteoritesTarget); 
-               asteroidsList.Add(asteroid);//использовать другой рандом
+               asteroidsList.Add(asteroid);
             }
 
             return asteroidsList;

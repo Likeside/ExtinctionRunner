@@ -1,12 +1,10 @@
-using System;
 using System.Collections.Generic;
-using Controllers;
 using ExtinctionRunner.Interfaces;
+using ExtinctionRunner.Models;
 using ExtinctionRunner.Views;
-using SavingGame;
 using UnityEngine;
 
-namespace ExtinctionRunner
+namespace ExtinctionRunner.Controllers
 {
     public class GameController: MonoBehaviour
     {
@@ -25,8 +23,7 @@ namespace ExtinctionRunner
 
         [SerializeField] private Transform _meteoritesTarget;
 
-
-
+        
         [SerializeField] private float _playerMaxHp;
         [SerializeField] private float _healingHealHp;
 
@@ -82,8 +79,7 @@ namespace ExtinctionRunner
             AsteroidsController asteroidsController = new AsteroidsController(_meteoritesTarget, _asteroidsSpawnRadius, bonusesHandler);
             _listOfExecutables.Add(asteroidsController);
             _listOfFixedExecutables.Add(asteroidsController);
-            _listOfStartables.Add(asteroidsController);
-            
+
             GameOverController gameOverController =
                 new GameOverController(playerController, playerHpController, inputController, asteroidsController);
 

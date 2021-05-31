@@ -1,6 +1,6 @@
-using SavingGame;
+using ExtinctionRunner.SavingGame;
 
-namespace Controllers
+namespace ExtinctionRunner.Controllers
 {
     public static class ScoreManager
     {

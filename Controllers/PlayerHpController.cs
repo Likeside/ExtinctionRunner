@@ -1,8 +1,8 @@
-using ExtinctionRunner;
+using ExtinctionRunner.Models;
 using ExtinctionRunner.Views;
 using UnityEngine;
 
-namespace Controllers
+namespace ExtinctionRunner.Controllers
 {
     public class PlayerHpController
     {
@@ -46,8 +46,5 @@ namespace Controllers
                 _healthBarSliderView.slider.value = _hpModel.CurrentHealthPoints;
             }
         }
-        
-        
-        
     }
 }

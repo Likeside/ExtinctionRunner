@@ -1,17 +1,14 @@
-using System;
-using ExtinctionRunner;
-using ExtinctionRunner.Interfaces;
+using ExtinctionRunner.Models;
 using ExtinctionRunner.Views;
-using UnityEditor;
 using UnityEngine;
 
-namespace Controllers
+namespace ExtinctionRunner.Controllers
 {
     public static class AudioController
     {
         private static SoundsModel _soundsModel;
         private static AudioSource _globalAudioSource;
-        private static bool isRunSoundPlaying = false;
+        private static bool _isSoundPlaying = false;
      
 
         public static void InitializeAudioController()
@@ -29,16 +26,16 @@ namespace Controllers
         
         public static void PlayRunSound(AudioSource audioSource)
         {
-            if (isRunSoundPlaying == false)
+            if (_isSoundPlaying == false)
             {
-                isRunSoundPlaying = true;
+                _isSoundPlaying = true;
                 audioSource.Play();
             }
         }
 
         public static void StopRunSound(AudioSource audioSource)
         {
-            isRunSoundPlaying = false;
+            _isSoundPlaying = false;
             audioSource.Stop();
         }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ExtinctionRunner
+namespace ExtinctionRunner.Models
 {
     [CreateAssetMenu(fileName = "SoundsModelSO", menuName = "Configs/SoundsModelSO", order = 3)]
     public class SoundsModel: ScriptableObject

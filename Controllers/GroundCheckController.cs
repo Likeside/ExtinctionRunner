@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PlatformerMVC
+namespace ExtinctionRunner.Controllers
 {
     public class GroundCheckController
     {

@@ -1,11 +1,9 @@
 using System;
-using Controllers;
 using ExtinctionRunner.Interfaces;
 using ExtinctionRunner.Views;
-using PlatformerMVC;
 using UnityEngine;
 
-namespace ExtinctionRunner
+namespace ExtinctionRunner.Controllers
 {
     public class PlayerController: IExecutable, IDisposable
     {
@@ -46,7 +44,6 @@ namespace ExtinctionRunner
 
         }
 
-
         private void Move(float axis)
         {
             if (_playerGroundCheckController.IsGrounded())
@@ -64,8 +61,7 @@ namespace ExtinctionRunner
             }
             else
             {
-             //jumpAnimation here?   
-             AudioController.StopRunSound(_playerView.runAudioSource);
+                AudioController.StopRunSound(_playerView.runAudioSource);
             }
 
             if (axis > 0)

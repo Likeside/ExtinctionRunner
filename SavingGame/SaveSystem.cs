@@ -1,11 +1,8 @@
-
-
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using Controllers;
 using UnityEngine;
 
-namespace SavingGame
+namespace ExtinctionRunner.SavingGame
 {
     public class SaveSystem
     {

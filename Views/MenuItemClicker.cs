@@ -1,8 +1,7 @@
-using System;
 using Controllers;
 using UnityEngine;
 
-namespace Views
+namespace ExtinctionRunner.Views
 {
     public class MenuItemClicker : MonoBehaviour
     {

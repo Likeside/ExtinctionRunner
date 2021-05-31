@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Views
+namespace ExtinctionRunner.Views
 {
     public class CloseBannerView: MonoBehaviour
     {

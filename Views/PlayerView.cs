@@ -1,4 +1,3 @@
-using ExtinctionRunner.Interfaces;
 using UnityEngine;
 
 namespace ExtinctionRunner.Views

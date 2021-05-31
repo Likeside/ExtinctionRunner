@@ -4,7 +4,6 @@ using ExtinctionRunner.Interfaces;
 using ExtinctionRunner.Views;
 using UnityEditor;
 using UnityEngine;
-using Views;
 
 namespace Controllers
 {

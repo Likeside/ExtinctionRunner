@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ExtinctionRunner;
+using ExtinctionRunner.BonusEffects;
 using ExtinctionRunner.Interfaces;
 using ExtinctionRunner.Views;
 using UnityEngine;

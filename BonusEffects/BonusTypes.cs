@@ -1,4 +1,4 @@
-namespace ExtinctionRunner
+namespace ExtinctionRunner.BonusEffects
 {
     public enum BonusTypes
     {

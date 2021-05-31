@@ -1,7 +1,7 @@
 using Controllers;
 using ExtinctionRunner.Interfaces;
 
-namespace BonusEffects
+namespace ExtinctionRunner.BonusEffects
 {
     public class HealingBonusEffect: IBonusEffect
     {

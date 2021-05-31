@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
-using Views;
 
 public static class AdsManager
 {
     private static string gameId = "4133487";
     private static bool isTestMode = false;
     private static string bannerId = "Banner_Android";
-  //  private static CloseBannerView _closeBannerView;
+    //  private static CloseBannerView _closeBannerView;
     public static void InitializeAdsManager()
     {
         Advertisement.Initialize(gameId, isTestMode);
@@ -44,5 +43,17 @@ public static class AdsManager
     public static void DisableAds()
     {
         PlayerPrefs.SetInt("AdsDisabled", 1);
+    }
+
+    public static bool CheckIfAdsDisabled()
+    {
+        if (PlayerPrefs.GetInt("AdsDisabled") == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

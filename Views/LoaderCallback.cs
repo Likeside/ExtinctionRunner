@@ -1,8 +1,7 @@
 using Controllers;
-using ExtinctionRunner.Interfaces;
 using UnityEngine;
 
-namespace Views
+namespace ExtinctionRunner.Views
 {
     public class LoaderCallback: MonoBehaviour
     {

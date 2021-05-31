@@ -1,8 +1,7 @@
 using Controllers;
-using ExtinctionRunner;
 using UnityEngine;
 
-namespace Views
+namespace ExtinctionRunner.Views
 {
     public class SetSkinActiveButton: MonoBehaviour
     {

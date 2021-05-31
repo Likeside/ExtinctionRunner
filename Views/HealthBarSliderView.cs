@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBarSliderView : MonoBehaviour
+namespace ExtinctionRunner.Views
 {
-    public Slider slider;
+    public class HealthBarSliderView : MonoBehaviour
+    {
+        public Slider slider;
+    }
 }

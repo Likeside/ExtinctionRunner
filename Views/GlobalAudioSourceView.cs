@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-namespace Views
+namespace ExtinctionRunner.Views
 {
     public class GlobalAudioSourceView: MonoBehaviour
     {

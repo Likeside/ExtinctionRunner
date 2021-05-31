@@ -1,13 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Dynamic;
-using ExtinctionRunner;
 using ExtinctionRunner.Interfaces;
 using ExtinctionRunner.Views;
 using UnityEngine;
 using TMPro;
 
-namespace BonusEffects
+namespace ExtinctionRunner.BonusEffects
 {
     public class SpeedBonusEffect: IBonusEffect, IExecutable
     {

@@ -1,9 +1,8 @@
-using System;
 using Controllers;
 using TMPro;
 using UnityEngine;
 
-namespace Views
+namespace ExtinctionRunner.Views
 {
     public class HighScoreView: MonoBehaviour
     {

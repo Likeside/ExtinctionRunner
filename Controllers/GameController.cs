@@ -33,6 +33,8 @@ namespace ExtinctionRunner
 
         [SerializeField] private float _speedBonus;
         [SerializeField] private float _timerForSpeedBonus;
+
+        [SerializeField] private Disposer _disposer; //ДОБАВИТЬ СЮДА ВСЕ ДИСПОУЗАБЛЫ, ВЫЗЫВАТЬ ПРИ НАЖАТИИ КНОПКИ QUIT
         
         
         

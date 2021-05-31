@@ -4,7 +4,7 @@ using ExtinctionRunner.Views;
 using TMPro;
 using UnityEngine;
 
-namespace BonusEffects
+namespace ExtinctionRunner.BonusEffects
 {
     public class VolcanoBonusEffect: IBonusEffect
     {

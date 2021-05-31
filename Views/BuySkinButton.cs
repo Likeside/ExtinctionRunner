@@ -1,10 +1,9 @@
-using System;
 using Controllers;
 using SavingGame;
 using TMPro;
 using UnityEngine;
 
-namespace Views
+namespace ExtinctionRunner.Views
 {
     public class BuySkinButton: MonoBehaviour
     {

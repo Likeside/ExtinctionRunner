@@ -1,3 +1,4 @@
+using ExtinctionRunner.BonusEffects;
 using ExtinctionRunner.Interfaces;
 using UnityEngine;
 

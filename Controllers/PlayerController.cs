@@ -87,7 +87,6 @@ namespace ExtinctionRunner.Controllers
                 AudioController.PlayJumpSound(_playerView.audioSource);
                _rigidbody2D.AddForce(Vector2.up * _jumpForce);
                _animationController.StartAnimation(_spriteRenderer, PlayerSpriteManager.jump, false, 30);
-               
             }
         } 
         
@@ -100,7 +99,6 @@ namespace ExtinctionRunner.Controllers
         {
             _inputController.OnArrowPressed -= Move;
             _inputController.OnJumpButtonPressed -= Jump;
-
         }
     }
 }

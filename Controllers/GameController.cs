@@ -84,6 +84,7 @@ namespace ExtinctionRunner.Controllers
             _disposer.AddToDisposableList(bonusCollectedAnimationController);
             _disposer.AddToDisposableList(bonusesAnimationController);
             _disposer.AddToDisposableList(playerController);
+            
         }
         
         void Update()

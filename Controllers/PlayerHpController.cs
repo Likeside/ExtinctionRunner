@@ -29,6 +29,7 @@ namespace ExtinctionRunner.Controllers
 
             if (_hpModel.CurrentHealthPoints <= 0)
             {
+                //AudioController.PlayDeadSound();
                 OnPlayerDead?.Invoke();
             }
         }

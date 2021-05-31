@@ -5,8 +5,7 @@ namespace ExtinctionRunner.Views
 {
     public class UiInputView: MonoBehaviour
     {
-        //Вывести контроллер в отдельную вьюшку, кнопки разбить по разным
-       public InputController _inputController = new InputController();
+        public InputController _inputController = new InputController();
 
        public void InputAxis(float axis)
        {

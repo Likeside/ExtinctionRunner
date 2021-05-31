@@ -14,8 +14,7 @@ namespace ExtinctionRunner.Controllers
         private List<BonusView> _bonusViews;
         private Dictionary<BonusTypes, Track> _tracks;
         private AnimationController _animationController;
-
-
+        
         public BonusesAnimationController(AnimationController animationController)
         {
             _bonusViews = new List<BonusView>();

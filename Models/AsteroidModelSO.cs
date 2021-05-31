@@ -2,16 +2,9 @@
 
 namespace ExtinctionRunner.Models
 {
-    public enum AsteroidType
-    {
-        Healing,
-        Speed,
-        VolcanoBonus
-    }
     [CreateAssetMenu(fileName = "AsteroidModelSO", menuName = "Configs/AsteroidModelSO", order = 2)]
     public class AsteroidModelSO : ScriptableObject
     {
-        public AsteroidType _type;
         public float _speed;
         public int _damage;
         public float _spawnRate;

@@ -9,7 +9,6 @@ namespace ExtinctionRunner.Controllers
         private static SoundsModel _soundsModel;
         private static AudioSource _globalAudioSource;
         private static bool _isSoundPlaying = false;
-     
 
         public static void InitializeAudioController()
         {
@@ -20,7 +19,6 @@ namespace ExtinctionRunner.Controllers
         public static void PlayAsteroidCollisionSound(AudioSource audioSource)
         {
             audioSource.PlayOneShot(_soundsModel.asteroidCollision);
-            
         }
         
         
@@ -46,8 +44,6 @@ namespace ExtinctionRunner.Controllers
             {
                 audioSource.PlayOneShot(_soundsModel.jump);  
             }
-            
-            
         }
 
         public static void PlaySunkSound()
@@ -63,7 +59,6 @@ namespace ExtinctionRunner.Controllers
         public static void PlayBonusSound()
         {
             _globalAudioSource.PlayOneShot(_soundsModel.bonusCollected);
-            
         }
 
         public static void PlayClickSound()

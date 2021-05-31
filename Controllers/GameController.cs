@@ -33,11 +33,8 @@ namespace ExtinctionRunner.Controllers
 
         [SerializeField] private Disposer _disposer; //ДОБАВИТЬ СЮДА ВСЕ ДИСПОУЗАБЛЫ, ВЫЗЫВАТЬ ПРИ НАЖАТИИ КНОПКИ QUIT
         
-        
-        
         private List<IExecutable> _listOfExecutables = new List<IExecutable>();
         private List<IFixedExecutable> _listOfFixedExecutables = new List<IFixedExecutable>();
-        private List<IStartable> _listOfStartables = new List<IStartable>();
 
         private void Start()
         {
@@ -82,12 +79,11 @@ namespace ExtinctionRunner.Controllers
 
             GameOverController gameOverController =
                 new GameOverController(playerController, playerHpController, inputController, asteroidsController);
-
             
-            foreach (var startable in _listOfStartables)
-            {
-                startable.OnStart();
-            }
+            _disposer.AddToDisposableList(animationController);
+            _disposer.AddToDisposableList(bonusCollectedAnimationController);
+            _disposer.AddToDisposableList(bonusesAnimationController);
+            _disposer.AddToDisposableList(playerController);
         }
         
         void Update()

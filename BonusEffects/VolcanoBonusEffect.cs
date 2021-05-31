@@ -19,7 +19,6 @@ namespace ExtinctionRunner.BonusEffects
         {
             ScoreManager.AddScore(_scoreBonus);
             _text.text = ScoreManager.CurrentScore.ToString();
-            Debug.Log(ScoreManager.CurrentScore);
         }
     }
 }

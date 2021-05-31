@@ -49,15 +49,15 @@ namespace ExtinctionRunner.Controllers
 
         public static bool BuyPredatorSkin()
         {
-            bool succes = false;
+            bool success = false;
             if (ScoreManager.TotalScore >= PredatorSkinPrice)
             {
                 PlayerPrefs.SetInt("PredatorBought", 1);
                 ScoreManager.RemoveScore(PredatorSkinPrice);
-                succes = true;
+                success = true;
             }
 
-            return succes;
+            return success;
         }
     }
 }

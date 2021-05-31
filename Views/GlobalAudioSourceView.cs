@@ -12,7 +12,7 @@ namespace ExtinctionRunner.Views
 
             if (objs.Length > 1)
             {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
             
             DontDestroyOnLoad(this);

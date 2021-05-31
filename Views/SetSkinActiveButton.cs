@@ -8,7 +8,6 @@ namespace ExtinctionRunner.Views
     {
         [SerializeField] private ShopController _shopController;
         
-        
         public void ToggleSkin()
         {
             if (PlayerSpriteManager.predatorActive)

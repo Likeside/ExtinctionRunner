@@ -6,14 +6,13 @@ namespace ExtinctionRunner.Controllers
     {
         public static int CurrentScore { get; private set; }
         public static int TotalScore { get; private set; }
-        public static int InitializeScore()
+        public static void InitializeScore()
         {
             CurrentScore = 0;
             TotalScore = SaveSystem.LoadGame().score;
-            return CurrentScore;
         }
 
-        public static int AddScore(int score)
+        public static void AddScore(int score)
         {
             CurrentScore += score;
 
@@ -22,18 +21,15 @@ namespace ExtinctionRunner.Controllers
                 AdsManager.ShowBannerAd();
             }
 
-            if (CurrentScore % 10 == 2)
+            if (CurrentScore % 10 == 3)
             {
                 AdsManager.CloseBannerAd();
             }
-            
-            return CurrentScore;
         }
 
-        public static int RemoveScore(int score)
+        public static void RemoveScore(int score)
         {
             TotalScore -= score;
-            return TotalScore;
         }
     }
 }

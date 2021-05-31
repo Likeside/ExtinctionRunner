@@ -12,13 +12,13 @@ namespace ExtinctionRunner.Views
         public Track Track
         {
             get => _track;
-            set { _track = value; }
+            set => _track = value;
         }
 
         public Image Image
         {
             get => _image;
-            set { _image = value; }
+            set => _image = value;
         }
     }
 }

@@ -14,11 +14,11 @@ namespace ExtinctionRunner.Controllers
             Loading
         }
 
-        private static Action onLoaderCallback;
+        private static Action _onLoaderCallback;
         public static void LoadScene(Scene scene)
         {
             
-            onLoaderCallback = () =>
+            _onLoaderCallback = () =>
             {
                 SceneManager.LoadScene(scene.ToString());
             };
@@ -28,10 +28,10 @@ namespace ExtinctionRunner.Controllers
 
         public static void LoaderCallback()
         {
-            if (onLoaderCallback != null)
+            if (_onLoaderCallback != null)
             {
-                onLoaderCallback();
-                onLoaderCallback = null;
+                _onLoaderCallback();
+                _onLoaderCallback = null;
             }
         }
        

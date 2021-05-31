@@ -15,7 +15,7 @@ namespace ExtinctionRunner.Views
         public void DestroyThis()
         {
             
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

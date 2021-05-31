@@ -13,14 +13,12 @@ namespace ExtinctionRunner.Controllers
             _bonusCollisionController = bonusCollisionController;
             _bonusesAnimationController = bonusesAnimationController;
             _bonusCollectedAnimationController = bonusCollectedAnimationController;
-           
         }
         public void AddBonusToHandler(BonusView bonusView)
         {
             _bonusCollisionController.AddBonusToHandler(bonusView);
             _bonusesAnimationController.AddBonusToHandler(bonusView);
             _bonusCollectedAnimationController.AddBonusToHandler(bonusView);
-     
         }
     }
 }

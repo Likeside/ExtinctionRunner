@@ -7,11 +7,10 @@ namespace ExtinctionRunner.Controllers
     public class PlayerHpController
     {
         private PlayerView _playerView;
-        private HpModel _hpModel;
-        private HealthBarSliderView _healthBarSliderView;
+        private readonly HpModel _hpModel;
+        private readonly HealthBarSliderView _healthBarSliderView;
 
         public delegate void PlayerDead();
-
         public event PlayerDead OnPlayerDead;
 
         public PlayerHpController(PlayerView playerView, HpModel hpModel)

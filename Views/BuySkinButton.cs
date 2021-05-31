@@ -30,13 +30,13 @@ namespace ExtinctionRunner.Views
 
         public void BuySkin()
         {
-         bool succes = PlayerSpriteManager.BuyPredatorSkin();
-         if (succes)
+         bool success = PlayerSpriteManager.BuyPredatorSkin();
+         if (success)
          {
              _text.text = ScoreManager.TotalScore.ToString();
              SaveSystem.SaveGame();
              _button.gameObject.SetActive(true);
-             this.gameObject.SetActive(false);
+             gameObject.SetActive(false);
              _priceDisplay.SetActive(false);
          }
          else

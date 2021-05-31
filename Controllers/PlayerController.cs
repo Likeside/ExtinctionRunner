@@ -20,7 +20,6 @@ namespace ExtinctionRunner.Controllers
         private Vector3 _scaleVector2;
 
         public delegate void PlayerSunk();
-
         public event PlayerSunk OnPlayerSunk;
 
         public PlayerController(PlayerView playerView, AnimationController animationController, InputController inputController, LayerMask groundCheckLayerMask, LayerMask waterCheckLayerMask, float jumpForce)

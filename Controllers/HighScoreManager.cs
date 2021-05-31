@@ -7,7 +7,7 @@ namespace ExtinctionRunner.Controllers
     {
         public static List<int> highScore = new List<int>(){0, 0, 0, 0, 0};
         
-        public static List<int> SetHighScore(int score)
+        public static void SetHighScore(int score)
         {
             for (int i = 0; i < highScore.Count; i++)
             {
@@ -18,8 +18,6 @@ namespace ExtinctionRunner.Controllers
                     break;
                 } 
             }
-
-            return highScore;
         }
 
         private static void SortList()
@@ -38,15 +36,13 @@ namespace ExtinctionRunner.Controllers
             }
         }
         
-        public static List<int> InitializeHighScore()
+        public static void InitializeHighScore()
         { 
             highScore[0] = SaveSystem.LoadGame().first;
           highScore[1] = SaveSystem.LoadGame().second;
           highScore[2] = SaveSystem.LoadGame().third;
           highScore[3] = SaveSystem.LoadGame().fourth;
           highScore[4] = SaveSystem.LoadGame().fifth;
-          
-            return highScore;
         }
     }
 }

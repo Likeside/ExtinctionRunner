@@ -16,8 +16,7 @@ namespace ExtinctionRunner.Controllers
            animationController = new AnimationController(config);
            animationController.StartAnimation(playerImage, Track.WalkPredator, true, 30);
        }
-
-
+       
        private void Update()
        {
            animationController.Execute();

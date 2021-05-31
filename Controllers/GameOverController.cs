@@ -21,13 +21,11 @@ namespace ExtinctionRunner.Controllers
             _asteroidsController = asteroidsController;
             _gameOverPanelView = GameObject.FindObjectOfType<GameOverPanelView>();
             _gameOverPanelView.gameObject.SetActive(false);
-
-
+            
             _playerController.OnPlayerSunk += GameOver;
             _playerHpController.OnPlayerDead += GameOver;
         }
-
-
+        
         private void GameOver()
         {
             _numberOfTimesDied += 1;
@@ -35,7 +33,7 @@ namespace ExtinctionRunner.Controllers
             _inputController.movementEnabled = false;
             _asteroidsController.isSpawning = false;
             _gameOverPanelView.gameObject.SetActive(true);
-            _gameOverPanelView._scoreAmount.text = ScoreManager.CurrentScore.ToString();
+            _gameOverPanelView.scoreAmount.text = ScoreManager.CurrentScore.ToString();
             HighScoreManager.SetHighScore(ScoreManager.CurrentScore);
             SaveSystem.SaveGame();
             ScoreManager.InitializeScore();
@@ -45,9 +43,7 @@ namespace ExtinctionRunner.Controllers
             }
             _playerController.OnPlayerSunk -= GameOver;
             _playerHpController.OnPlayerDead -= GameOver;
-
         }
-
         
     }
 }

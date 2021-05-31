@@ -19,7 +19,6 @@ namespace ExtinctionRunner.Controllers
                 {BonusTypes.Speed, new SpeedBonusEffect(bonusesModel.CoreController, bonusesModel.SpeedBonus, bonusesModel.Timer, bonusesModel.ListOFExecutables)},
                 {BonusTypes.Volcano, new VolcanoBonusEffect()}
             };
-
         }
 
         void HandleCollision(BonusView bonusView, GameObject other)

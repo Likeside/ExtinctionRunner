@@ -6,8 +6,6 @@ namespace ExtinctionRunner.SavingGame
     public class SavedData
     {
         public int score = 0;
-        public bool adsDisabled;
-        public bool redDinoSkinUnlocked;
         public int first = 0;
         public int second = 0;
         public int third = 0;

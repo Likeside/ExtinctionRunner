@@ -16,23 +16,9 @@ namespace ExtinctionRunner.Controllers
         }
         public bool IsGrounded()
         {
-           
             RaycastHit2D raycastHit2D = Physics2D.Raycast(_collider2D.bounds.center, 
                 Vector2.down, _collider2D.bounds.extents.y + _extraHeight, _layerMask);
-
-            Color rayColor;
-
-            if (raycastHit2D.collider != null)
-            {
-                rayColor = Color.green;
-            }
-            else
-            {
-                rayColor = Color.red;
-            }
-
-            Debug.DrawRay(_collider2D.bounds.center, Vector2.down * (_collider2D.bounds.extents.y + _extraHeight), rayColor);
-
+            
             return raycastHit2D.collider != null;
         }
     }
